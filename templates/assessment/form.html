@@ -1,0 +1,403 @@
+{% extends "base.html" %}
+
+{% block title %}{{ assessment.title }} - Evergrow360{% endblock %}
+
+{% block content %}
+<div class="onboarding-container">
+    <!-- Progress Header -->
+    <header class="onboarding-header">
+        <div class="container">
+            <div class="flex-between">
+                <div class="logo">
+                    <h2>Evergrow360</h2>
+                </div>
+                <div class="progress-indicator">
+                    <span class="progress-text">Step 2 of 4</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 50%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="onboarding-main">
+        <div class="container-sm">
+            <div class="assessment-card">
+                <div class="assessment-header">
+                    <h1>{{ assessment.title }}</h1>
+                    <p>{{ assessment.description }}</p>
+                    <div class="assessment-meta">
+                        <span class="estimated-time">⏱️ Estimated completion time: {{ assessment.estimated_completion_time }}</span>
+                    </div>
+                </div>
+
+                {% if errors %}
+                <div class="error-messages">
+                    <h3>Please correct the following errors:</h3>
+                    <ul>
+                    {% for field, messages in errors.items() %}
+                        {% for message in messages %}
+                        <li>{{ field }}: {{ message }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <form method="POST" action="{{ url_for('assessment.submit_assessment_form') }}" class="assessment-form">
+                    {% for section in assessment.sections %}
+                    <div class="form-section">
+                        <h3 class="section-title">{{ section.title }}</h3>
+
+                        {% for question in section.questions %}
+                        <div class="form-group">
+                            <label class="form-label" for="{{ question.id }}">
+                                {{ question.label }}
+                                {% if question.required %}<span class="required">*</span>{% endif %}
+                            </label>
+
+                            {% if question.type == 'text' %}
+                            <input type="text"
+                                   id="{{ question.id }}"
+                                   name="{{ question.id }}"
+                                   value="{{ form_data.get(question.id, '') if form_data else '' }}"
+                                   placeholder="{{ question.placeholder }}"
+                                   maxlength="{{ question.maxLength }}"
+                                   class="form-input"
+                                   {% if question.required %}required{% endif %}>
+
+                            {% elif question.type == 'textarea' %}
+                            <textarea id="{{ question.id }}"
+                                      name="{{ question.id }}"
+                                      placeholder="{{ question.placeholder }}"
+                                      maxlength="{{ question.maxLength }}"
+                                      class="form-textarea"
+                                      {% if question.required %}required{% endif %}>{% if form_data %}{{ form_data.get(question.id, '') }}{% endif %}</textarea>
+
+                            {% elif question.type == 'radio' %}
+                            <div class="radio-group">
+                                {% for option in question.options %}
+                                <label class="radio-option">
+                                    <input type="radio"
+                                           name="{{ question.id }}"
+                                           value="{{ option.value if option.value else option }}"
+                                           {% if form_data and form_data.get(question.id) == (option.value if option.value else option) %}checked{% endif %}
+                                           {% if question.required %}required{% endif %}>
+                                    <span class="radio-label">{{ option.label if option.label else option }}</span>
+                                </label>
+                                {% endfor %}
+                            </div>
+
+                            {% elif question.type == 'multiselect' %}
+                            <div class="checkbox-group">
+                                {% for option in question.options %}
+                                <label class="checkbox-option">
+                                    <input type="checkbox"
+                                           name="{{ question.id }}[]"
+                                           value="{{ option }}"
+                                           {% if form_data and form_data.get(question.id) and option in form_data.get(question.id) %}checked{% endif %}>
+                                    <span class="checkbox-label">{{ option }}</span>
+                                </label>
+                                {% endfor %}
+                            </div>
+                            {% if question.minSelections or question.maxSelections %}
+                            <small class="form-help">
+                                {% if question.minSelections %}Select at least {{ question.minSelections }}{% endif %}
+                                {% if question.minSelections and question.maxSelections %} and {% endif %}
+                                {% if question.maxSelections %}up to {{ question.maxSelections }}{% endif %} options
+                            </small>
+                            {% endif %}
+
+                            {% elif question.type == 'scale' %}
+                            <div class="scale-container">
+                                <div class="scale-labels">
+                                    <span>{{ question.minLabel }}</span>
+                                    <span>{{ question.maxLabel }}</span>
+                                </div>
+                                <div class="scale-options">
+                                    {% for i in range(question.min, question.max + 1) %}
+                                    <label class="scale-option">
+                                        <input type="radio"
+                                               name="{{ question.id }}"
+                                               value="{{ i }}"
+                                               {% if form_data and form_data.get(question.id) == i|string %}checked{% endif %}
+                                               {% if question.required %}required{% endif %}>
+                                        <span class="scale-number">{{ i }}</span>
+                                    </label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            Submit Assessment
+                        </button>
+                    </div>
+                </form>
+
+                <div class="privacy-notice">
+                    <p>{{ assessment.privacy_note }}</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<style>
+    .assessment-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-xl);
+        box-shadow: var(--shadow-lg);
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .assessment-header {
+        text-align: center;
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .assessment-header h1 {
+        margin-bottom: var(--spacing-sm);
+        color: var(--navy-deep);
+    }
+
+    .assessment-header p {
+        color: var(--slate-medium);
+        font-size: 1.125rem;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .assessment-meta {
+        color: var(--slate-medium);
+        font-size: 0.875rem;
+    }
+
+    .error-messages {
+        background: #fee;
+        border: 1px solid #fcc;
+        border-radius: var(--radius-md);
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .error-messages h3 {
+        color: #c33;
+        margin-top: 0;
+    }
+
+    .error-messages ul {
+        margin: 0;
+        padding-left: var(--spacing-lg);
+    }
+
+    .error-messages li {
+        color: #c33;
+    }
+
+    .form-section {
+        margin-bottom: var(--spacing-xl);
+        padding-bottom: var(--spacing-lg);
+        border-bottom: 1px solid var(--slate-light);
+    }
+
+    .form-section:last-child {
+        border-bottom: none;
+    }
+
+    .section-title {
+        color: var(--navy-deep);
+        font-size: 1.25rem;
+        margin-bottom: var(--spacing-lg);
+        padding-bottom: var(--spacing-sm);
+        border-bottom: 2px solid var(--gold-primary);
+    }
+
+    .form-group {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .form-label {
+        display: block;
+        font-weight: 500;
+        color: var(--slate-dark);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .required {
+        color: #e74c3c;
+    }
+
+    .form-input,
+    .form-textarea {
+        width: 100%;
+        padding: var(--spacing-md);
+        border: 1px solid var(--slate-light);
+        border-radius: var(--radius-md);
+        font-family: inherit;
+        font-size: 1rem;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+        outline: none;
+        border-color: var(--gold-primary);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    }
+
+    .form-textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .radio-group,
+    .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .radio-option,
+    .checkbox-option {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-md);
+        border: 1px solid var(--slate-light);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .radio-option:hover,
+    .checkbox-option:hover {
+        border-color: var(--gold-primary);
+        background: rgba(212, 175, 55, 0.05);
+    }
+
+    .radio-option input,
+    .checkbox-option input {
+        margin: 0;
+    }
+
+    .radio-option input:checked + .radio-label,
+    .checkbox-option input:checked + .checkbox-label {
+        color: var(--gold-primary);
+        font-weight: 500;
+    }
+
+    .radio-label,
+    .checkbox-label {
+        flex: 1;
+    }
+
+    .form-help {
+        display: block;
+        color: var(--slate-medium);
+        font-size: 0.875rem;
+        margin-top: var(--spacing-xs);
+    }
+
+    .scale-container {
+        text-align: center;
+    }
+
+    .scale-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: var(--spacing-md);
+        color: var(--slate-medium);
+        font-size: 0.875rem;
+    }
+
+    .scale-options {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--spacing-xs);
+        flex-wrap: wrap;
+    }
+
+    .scale-option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        min-width: 40px;
+    }
+
+    .scale-option input {
+        display: none;
+    }
+
+    .scale-number {
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--slate-light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .scale-option input:checked + .scale-number {
+        border-color: var(--gold-primary);
+        background: var(--gold-primary);
+        color: var(--white);
+    }
+
+    .form-actions {
+        text-align: center;
+        margin-top: var(--spacing-xl);
+        padding-top: var(--spacing-lg);
+        border-top: 1px solid var(--slate-light);
+    }
+
+    .btn-large {
+        padding: var(--spacing-md) var(--spacing-xl);
+        font-size: 1.125rem;
+        font-weight: 600;
+    }
+
+    .privacy-notice {
+        margin-top: var(--spacing-lg);
+        padding: var(--spacing-md);
+        background: rgba(136, 151, 168, 0.1);
+        border-radius: var(--radius-md);
+        text-align: center;
+    }
+
+    .privacy-notice p {
+        color: var(--slate-medium);
+        font-size: 0.875rem;
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        .scale-options {
+            justify-content: center;
+        }
+
+        .scale-number {
+            width: 35px;
+            height: 35px;
+            font-size: 0.875rem;
+        }
+
+        .assessment-card {
+            padding: var(--spacing-lg);
+        }
+    }
+</style>
+{% endblock %}

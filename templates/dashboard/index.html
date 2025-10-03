@@ -1,0 +1,302 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Evergrow360{% endblock %}
+
+{% block content %}
+<!-- Welcome Header -->
+<div class="card" style="background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-light) 100%); color: var(--white);">
+    <h1 style="color: var(--gold-primary); margin-bottom: 0.5rem;">Welcome back! 👋</h1>
+    <p style="opacity: 0.9; font-size: 1.1rem;">
+        Your personalized coaching journey is underway. Here's your progress and next steps.
+    </p>
+</div>
+
+<!-- Quick Actions -->
+<div class="grid grid-3">
+    <a href="/marketplace" class="card" style="text-decoration: none; color: inherit; transition: transform 0.3s ease; cursor: pointer;" 
+       onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+        <div style="text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">🎯</div>
+            <h3 style="color: var(--navy-deep); margin-bottom: 0.5rem;">Book Session</h3>
+            <p style="color: var(--gray-600);">Connect with expert coaches</p>
+        </div>
+    </a>
+    
+    <div class="card" style="text-align: center; cursor: pointer; transition: transform 0.3s ease;"
+         onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'"
+         onclick="showCoachingPlan()">
+        <div style="font-size: 2rem; margin-bottom: 1rem;">📋</div>
+        <h3 style="color: var(--navy-deep); margin-bottom: 0.5rem;">View Plan</h3>
+        <p style="color: var(--gray-600);">Your personalized development roadmap</p>
+    </div>
+    
+    <div class="card" style="text-align: center; cursor: pointer; transition: transform 0.3s ease;"
+         onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'"
+         onclick="showProgress()">
+        <div style="font-size: 2rem; margin-bottom: 1rem;">📊</div>
+        <h3 style="color: var(--navy-deep); margin-bottom: 0.5rem;">Track Progress</h3>
+        <p style="color: var(--gray-600);">Monitor your development</p>
+    </div>
+</div>
+
+<!-- AI Insights & Coaching Plan -->
+{% if data.coaching_plan %}
+<div class="card" id="coachingPlanCard">
+    <div class="card-header">
+        <h2 class="card-title">🧠 Your AI-Generated Coaching Plan</h2>
+        <p style="color: var(--gray-600); margin-top: 0.5rem;">
+            Based on your assessment, here's your personalized development roadmap
+        </p>
+    </div>
+    
+    <div style="background: var(--gold-primary); color: var(--navy-deep); padding: 1rem; border-radius: 6px; margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 0.5rem;">Plan Overview</h3>
+        <p style="margin: 0;">{{ data.coaching_plan.coaching_plan.plan_overview }}</p>
+    </div>
+    
+    <!-- Coaching Readiness -->
+    <div class="grid grid-2" style="margin-bottom: 2rem;">
+        <div>
+            <h4 style="color: var(--navy-deep); margin-bottom: 1rem;">🎯 Your Strengths</h4>
+            <ul style="list-style: none; padding: 0;">
+                {% for strength in data.coaching_plan.ai_analysis.strengths %}
+                <li style="padding: 0.5rem 0; border-bottom: 1px solid #E5E7EB;">
+                    ✅ {{ strength }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div>
+            <h4 style="color: var(--navy-deep); margin-bottom: 1rem;">🎯 Development Areas</h4>
+            <ul style="list-style: none; padding: 0;">
+                {% for area in data.coaching_plan.ai_analysis.development_areas %}
+                <li style="padding: 0.5rem 0; border-bottom: 1px solid #E5E7EB;">
+                    🔄 {{ area }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Coaching Phases -->
+    <div>
+        <h4 style="color: var(--navy-deep); margin-bottom: 1rem;">📅 Development Phases</h4>
+        <div class="grid grid-3">
+            {% for phase in data.coaching_plan.coaching_plan.phases %}
+            <div style="border: 1px solid #E5E7EB; border-radius: 6px; padding: 1rem;">
+                <h5 style="color: var(--gold-primary); margin-bottom: 0.5rem;">{{ phase.phase_name }}</h5>
+                <p style="font-size: 0.875rem; color: var(--gray-600); margin-bottom: 1rem;">{{ phase.duration_weeks }} weeks</p>
+                
+                <div style="margin-bottom: 1rem;">
+                    <h6 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Objectives:</h6>
+                    <ul style="font-size: 0.875rem; margin: 0; padding-left: 1rem;">
+                        {% for objective in phase.objectives %}
+                        <li>{{ objective }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div>
+                    <h6 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Key Activities:</h6>
+                    <ul style="font-size: 0.875rem; margin: 0; padding-left: 1rem;">
+                        {% for activity in phase.key_activities %}
+                        <li>{{ activity }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Coaching Readiness Score -->
+    <div style="background: var(--gray-100); padding: 1.5rem; border-radius: 6px; margin-top: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h4 style="color: var(--navy-deep); margin: 0;">Coaching Readiness Score</h4>
+            <span style="font-size: 1.5rem; font-weight: bold; color: var(--gold-primary);">
+                {{ data.coaching_plan.ai_analysis.coaching_readiness }}/10
+            </span>
+        </div>
+        <div style="background: #E5E7EB; height: 8px; border-radius: 4px; margin-bottom: 1rem;">
+            <div style="background: var(--gold-primary); height: 100%; border-radius: 4px; width: {{ data.coaching_plan.ai_analysis.coaching_readiness * 10 }}%;"></div>
+        </div>
+        <p style="color: var(--gray-600); margin: 0;">
+            Recommended intensity: <strong>{{ data.coaching_plan.ai_analysis.recommended_intensity }}</strong> coaching sessions
+        </p>
+    </div>
+</div>
+{% endif %}
+
+<!-- Current Progress & Stats -->
+<div class="grid grid-2">
+    <!-- Progress Overview -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">📈 Your Progress</h3>
+        </div>
+        
+        <div style="margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <span>Overall Development</span>
+                <span style="font-weight: 600; color: var(--gold-primary);">15%</span>
+            </div>
+            <div style="background: #E5E7EB; height: 6px; border-radius: 3px;">
+                <div style="background: var(--gold-primary); height: 100%; border-radius: 3px; width: 15%;"></div>
+            </div>
+        </div>
+        
+        <div style="margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <span>Assessment Completed</span>
+                <span style="font-weight: 600; color: var(--success);">100%</span>
+            </div>
+            <div style="background: #E5E7EB; height: 6px; border-radius: 3px;">
+                <div style="background: var(--success); height: 100%; border-radius: 3px; width: 100%;"></div>
+            </div>
+        </div>
+        
+        <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <span>First Session Booked</span>
+                <span style="font-weight: 600; color: var(--gray-600);">0%</span>
+            </div>
+            <div style="background: #E5E7EB; height: 6px; border-radius: 3px;">
+                <div style="background: var(--gray-400); height: 100%; border-radius: 3px; width: 0%;"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Achievements -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">🏆 Recent Achievements</h3>
+        </div>
+        
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            {% for achievement in data.recent_achievements %}
+            <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #E5E7EB;">
+                <span style="color: var(--gold-primary); font-size: 1.25rem;">✅</span>
+                <span>{{ achievement }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- Upcoming Sessions & Next Steps -->
+<div class="grid grid-2">
+    <!-- Upcoming Sessions -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">📅 Upcoming Sessions</h3>
+        </div>
+        
+        {% if data.upcoming_sessions %}
+            {% for session in data.upcoming_sessions %}
+            <div style="border: 1px solid #E5E7EB; border-radius: 6px; padding: 1rem; margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                    <h4 style="margin: 0; color: var(--navy-deep);">{{ session.title }}</h4>
+                    <span style="background: var(--gold-primary); color: var(--navy-deep); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 500;">
+                        {{ session.date }}
+                    </span>
+                </div>
+                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">{{ session.description }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+        <div style="text-align: center; padding: 2rem; color: var(--gray-600);">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📅</div>
+            <p style="margin-bottom: 1rem;">No sessions scheduled yet</p>
+            <a href="/marketplace" class="btn btn-primary">Book Your First Session</a>
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- Next Steps -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">🎯 Next Steps</h3>
+        </div>
+        
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            {% for step in data.next_steps %}
+            <li style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #E5E7EB;">
+                <span style="color: var(--gold-primary); font-size: 1.25rem;">▶️</span>
+                <span>{{ step }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #E5E7EB; text-align: center;">
+            <a href="/marketplace" class="btn btn-primary">Explore Coaches</a>
+        </div>
+    </div>
+</div>
+
+<!-- AI Recommendations Modal -->
+<div id="progressModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: var(--white); border-radius: 12px; padding: 2rem; max-width: 500px; margin: 1rem;">
+        <h3 style="color: var(--navy-deep); margin-bottom: 1rem;">📊 Progress Details</h3>
+        <p style="margin-bottom: 1.5rem;">You're making great progress! Here are some insights based on your current development:</p>
+        
+        <div style="background: var(--gray-100); padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem;">
+            <h4 style="color: var(--gold-primary); margin-bottom: 0.5rem;">💡 AI Recommendation</h4>
+            <p style="margin: 0;">Consider booking your first coaching session this week to maintain momentum and start applying your development plan.</p>
+        </div>
+        
+        <div style="text-align: center;">
+            <button onclick="hideProgress()" class="btn btn-secondary" style="margin-right: 1rem;">Close</button>
+            <a href="/marketplace" class="btn btn-primary">Book Session</a>
+        </div>
+    </div>
+</div>
+
+<script>
+function showCoachingPlan() {
+    document.getElementById('coachingPlanCard').scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+    });
+    
+    // Add highlight effect
+    const card = document.getElementById('coachingPlanCard');
+    card.style.border = '2px solid var(--gold-primary)';
+    card.style.transition = 'border 0.3s ease';
+    
+    setTimeout(() => {
+        card.style.border = 'none';
+    }, 2000);
+}
+
+function showProgress() {
+    document.getElementById('progressModal').style.display = 'flex';
+}
+
+function hideProgress() {
+    document.getElementById('progressModal').style.display = 'none';
+}
+
+// Close modal when clicking outside
+document.getElementById('progressModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        hideProgress();
+    }
+});
+
+// Add welcome animation
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        
+        setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+});
+</script>
+{% endblock %}

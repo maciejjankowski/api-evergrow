@@ -1,0 +1,129 @@
+{
+    // VS Code Settings to minimize interruptions during autonomous development
+    "workbench.startupEditor": "none",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.quickOpen.closeOnFocusLost": false,
+    "window.restoreWindows": "none",
+    "window.newWindowDimensions": "maximized",
+
+    // Disable notifications and popups
+    "workbench.notifications.enabled": false,
+    "git.autofetch": false,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "git.enableCommitSigning": false,
+
+    // Disable auto-save prompts and confirmations
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+
+    // Disable extension recommendations and surveys
+    "extensions.ignoreRecommendations": true,
+    "telemetry.telemetryLevel": "off",
+    "workbench.enableExperiments": false,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+
+    // Terminal settings for autonomous execution
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.shell.osx": "zsh",
+    "terminal.integrated.shellArgs.osx": ["-l"],
+    "terminal.integrated.enablePersistentSessions": true,
+    "terminal.integrated.confirmOnExit": "never",
+    "terminal.integrated.confirmOnKill": "never",
+
+    // Python settings for autonomous development
+    "python.terminal.activateEnvironment": true,
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": ["--line-length", "100"],
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+
+    // Editor settings to reduce distractions
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "boundary",
+    "editor.renderControlCharacters": false,
+    "editor.wordWrap": "off",
+    "editor.cursorBlinking": "solid",
+    "editor.cursorSmoothCaretAnimation": "off",
+    "editor.smoothScrolling": true,
+    "editor.scrollBeyondLastLine": false,
+
+    // Disable hover and other intrusive features
+    "editor.hover.enabled": false,
+    "editor.parameterHints.enabled": false,
+    "editor.quickSuggestions": {
+        "other": false,
+        "comments": false,
+        "strings": false
+    },
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.tabCompletion": "off",
+
+    // Disable breadcrumbs and status bar distractions
+    "breadcrumbs.enabled": false,
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": true,
+
+    // File explorer settings
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.openEditors.visible": 1,
+
+    // Search settings
+    "search.showLineNumbers": true,
+    "search.smartCase": true,
+    "search.useGlobalIgnoreFiles": true,
+
+    // Git settings to reduce prompts
+    "git.confirmEmptyCommits": false,
+    "git.showCommitInput": true,
+    "git.showInlineOpenFileAction": false,
+    "git.showPushSuccessNotification": false,
+    "git.showProgress": false,
+
+    // Disable welcome page and tips
+    "workbench.welcome.enabled": false,
+    "workbench.tips.enabled": false,
+
+    // Extension settings for autonomous development
+    "gitlens.showWelcomeOnInstall": false,
+    "gitlens.showWhatsNewAfterUpgrades": false,
+    "python.showStartPage": false,
+
+    // Custom keybindings to avoid accidental interruptions
+    "keyboard.dispatch": "keyCode",
+
+    // Workspace settings for autonomous mode
+    "workbench.editorAssociations": {
+        "*.md": "vscode.markdown.preview.editor"
+    },
+
+    // Disable problematic features
+    "editor.codeActionsOnSave": {},
+    "editor.formatOnSave": false,
+    "editor.formatOnType": false,
+    "editor.formatOnPaste": false,
+
+    // Performance settings
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/__pycache__/**": true,
+        "**/.venv/**": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/__pycache__": true,
+        "**/.venv": true,
+        "**/.git": true
+    }
+}

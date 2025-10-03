@@ -1,0 +1,532 @@
+{% extends "base.html" %}
+
+{% block title %}Assessment Results - Evergrow360{% endblock %}
+
+{% block content %}
+<div class="onboarding-container">
+    <!-- Progress Header -->
+    <header class="onboarding-header">
+        <div class="container">
+            <div class="flex-between">
+                <div class="logo">
+                    <h2>Evergrow360</h2>
+                </div>
+                <div class="progress-indicator">
+                    <span class="progress-text">Step 3 of 4</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="onboarding-main">
+        <div class="container-sm">
+            <div class="results-card">
+                <div class="results-header">
+                    <h1>Your Assessment Results</h1>
+                    <p>Based on your responses, here's your personalized leadership development analysis</p>
+                    <div class="assessment-meta">
+                        <span class="completion-date">Completed on {{ results.submitted_at[:10] if results.submitted_at else 'Recently' }}</span>
+                    </div>
+                </div>
+
+                {% if results.ai_analysis %}
+                <!-- AI Analysis Section -->
+                <div class="analysis-section">
+                    <h2>AI-Powered Analysis</h2>
+
+                    <div class="analysis-grid">
+                        <!-- Coaching Readiness -->
+                        <div class="analysis-card">
+                            <h3>Coaching Readiness</h3>
+                            <div class="readiness-score">
+                                <div class="score-circle">
+                                    <span class="score-number">{{ results.ai_analysis.coaching_readiness or 7 }}</span>
+                                    <span class="score-label">/10</span>
+                                </div>
+                                <p class="readiness-description">
+                                    {% if results.ai_analysis.coaching_readiness >= 8 %}
+                                        You're highly ready for intensive coaching
+                                    {% elif results.ai_analysis.coaching_readiness >= 6 %}
+                                        You're ready for regular coaching sessions
+                                    {% else %}
+                                        Consider starting with light coaching to build readiness
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Recommended Intensity -->
+                        <div class="analysis-card">
+                            <h3>Recommended Intensity</h3>
+                            <div class="intensity-indicator">
+                                <span class="intensity-level {{ results.ai_analysis.recommended_intensity or 'regular' }}">
+                                    {{ results.ai_analysis.recommended_intensity.title() or 'Regular' }}
+                                </span>
+                                <p class="intensity-description">
+                                    {% if results.ai_analysis.recommended_intensity == 'intensive' %}
+                                        8-12 hours per week recommended
+                                    {% elif results.ai_analysis.recommended_intensity == 'regular' %}
+                                        4-6 hours per week recommended
+                                    {% else %}
+                                        2-4 hours per week recommended
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Strengths -->
+                    {% if results.ai_analysis.strengths %}
+                    <div class="strengths-section">
+                        <h3>Your Leadership Strengths</h3>
+                        <div class="strengths-grid">
+                            {% for strength in results.ai_analysis.strengths %}
+                            <div class="strength-item">
+                                <div class="strength-icon">✓</div>
+                                <span class="strength-text">{{ strength }}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Development Areas -->
+                    {% if results.ai_analysis.development_areas %}
+                    <div class="development-section">
+                        <h3>Areas for Development</h3>
+                        <div class="development-grid">
+                            {% for area in results.ai_analysis.development_areas %}
+                            <div class="development-item">
+                                <div class="development-icon">🎯</div>
+                                <span class="development-text">{{ area }}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Success Factors -->
+                    {% if results.ai_analysis.success_factors %}
+                    <div class="success-section">
+                        <h3>Key Success Factors</h3>
+                        <ul class="success-list">
+                            {% for factor in results.ai_analysis.success_factors %}
+                            <li>{{ factor }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+                {% else %}
+                <!-- Basic Analysis Fallback -->
+                <div class="basic-analysis">
+                    <h2>Your Assessment Summary</h2>
+                    <p>Your assessment has been recorded. A detailed AI analysis will be available shortly.</p>
+
+                    <div class="response-summary">
+                        <h3>Your Responses</h3>
+                        <dl class="response-list">
+                            {% if results.responses.professional_role %}
+                            <dt>Professional Role:</dt>
+                            <dd>{{ results.responses.professional_role }}</dd>
+                            {% endif %}
+
+                            {% if results.responses.main_challenges %}
+                            <dt>Main Challenges:</dt>
+                            <dd>{{ results.responses.main_challenges|join(', ') }}</dd>
+                            {% endif %}
+
+                            {% if results.responses.skill_priorities %}
+                            <dt>Skill Priorities:</dt>
+                            <dd>{{ results.responses.skill_priorities|join(', ') }}</dd>
+                            {% endif %}
+
+                            {% if results.responses.learning_style %}
+                            <dt>Learning Style:</dt>
+                            <dd>{{ results.responses.learning_style }}</dd>
+                            {% endif %}
+
+                            {% if results.responses.goal_timeframe %}
+                            <dt>Goal Timeframe:</dt>
+                            <dd>{{ results.responses.goal_timeframe }}</dd>
+                            {% endif %}
+                        </dl>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Next Steps -->
+                <div class="next-steps-section">
+                    <h2>What's Next?</h2>
+                    <div class="next-steps-grid">
+                        <div class="next-step-card">
+                            <div class="step-number">1</div>
+                            <h4>Schedule Your First Session</h4>
+                            <p>Book a coaching session with one of our certified leadership coaches.</p>
+                            <a href="/marketplace" class="btn btn-outline">Browse Coaches</a>
+                        </div>
+
+                        <div class="next-step-card">
+                            <div class="step-number">2</div>
+                            <h4>Access Resources</h4>
+                            <p>Explore our library of leadership development courses and tools.</p>
+                            <a href="/courses" class="btn btn-outline">View Courses</a>
+                        </div>
+
+                        <div class="next-step-card">
+                            <div class="step-number">3</div>
+                            <h4>Track Progress</h4>
+                            <p>Monitor your development journey and celebrate milestones.</p>
+                            <a href="/dashboard" class="btn btn-outline">View Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="results-actions">
+                    <a href="/dashboard" class="btn btn-primary">Go to Dashboard</a>
+                    <a href="/assessment/form" class="btn btn-secondary">Retake Assessment</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<style>
+    .results-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-xl);
+        box-shadow: var(--shadow-lg);
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .results-header {
+        text-align: center;
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .results-header h1 {
+        margin-bottom: var(--spacing-sm);
+        color: var(--navy-deep);
+    }
+
+    .results-header p {
+        color: var(--slate-medium);
+        font-size: 1.125rem;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .assessment-meta {
+        color: var(--slate-medium);
+        font-size: 0.875rem;
+    }
+
+    .analysis-section {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .analysis-section h2 {
+        color: var(--navy-deep);
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-lg);
+        padding-bottom: var(--spacing-sm);
+        border-bottom: 2px solid var(--gold-primary);
+    }
+
+    .analysis-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .analysis-card {
+        background: var(--white);
+        border: 1px solid var(--slate-light);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        text-align: center;
+    }
+
+    .analysis-card h3 {
+        color: var(--navy-deep);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .readiness-score {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-md);
+    }
+
+    .score-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+
+    .score-number {
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    .score-label {
+        font-size: 0.75rem;
+        opacity: 0.9;
+    }
+
+    .readiness-description {
+        color: var(--slate-medium);
+        font-size: 0.875rem;
+        margin: 0;
+    }
+
+    .intensity-indicator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-md);
+    }
+
+    .intensity-level {
+        padding: var(--spacing-sm) var(--spacing-md);
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.875rem;
+    }
+
+    .intensity-level.intensive {
+        background: #fee;
+        color: #c33;
+    }
+
+    .intensity-level.regular {
+        background: #efe;
+        color: #363;
+    }
+
+    .intensity-level.light {
+        background: #eef;
+        color: #336;
+    }
+
+    .intensity-description {
+        color: var(--slate-medium);
+        font-size: 0.875rem;
+        margin: 0;
+        text-align: center;
+    }
+
+    .strengths-section,
+    .development-section,
+    .success-section {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .strengths-section h3,
+    .development-section h3,
+    .success-section h3 {
+        color: var(--navy-deep);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .strengths-grid,
+    .development-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-md);
+    }
+
+    .strength-item,
+    .development-item {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-md);
+        background: var(--white);
+        border: 1px solid var(--slate-light);
+        border-radius: var(--radius-md);
+    }
+
+    .strength-icon {
+        color: #363;
+        font-weight: bold;
+    }
+
+    .development-icon {
+        color: var(--gold-primary);
+    }
+
+    .strength-text,
+    .development-text {
+        flex: 1;
+    }
+
+    .success-list {
+        background: var(--white);
+        border: 1px solid var(--slate-light);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+    }
+
+    .success-list li {
+        margin-bottom: var(--spacing-sm);
+        color: var(--slate-dark);
+    }
+
+    .success-list li:last-child {
+        margin-bottom: 0;
+    }
+
+    .basic-analysis {
+        background: #f8f9fa;
+        border: 1px solid var(--slate-light);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .basic-analysis h2 {
+        color: var(--navy-deep);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .response-summary {
+        margin-top: var(--spacing-lg);
+    }
+
+    .response-summary h3 {
+        color: var(--navy-deep);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .response-list {
+        display: grid;
+        gap: var(--spacing-sm);
+    }
+
+    .response-list dt {
+        font-weight: 600;
+        color: var(--slate-dark);
+    }
+
+    .response-list dd {
+        margin: 0;
+        color: var(--slate-medium);
+        margin-left: var(--spacing-md);
+    }
+
+    .next-steps-section {
+        background: linear-gradient(135deg, var(--navy-deep), var(--navy-light));
+        color: var(--white);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-xl);
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .next-steps-section h2 {
+        color: var(--white);
+        margin-bottom: var(--spacing-lg);
+        text-align: center;
+    }
+
+    .next-steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-lg);
+    }
+
+    .next-step-card {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        text-align: center;
+        backdrop-filter: blur(10px);
+    }
+
+    .step-number {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--gold-primary);
+        color: var(--navy-deep);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin: 0 auto var(--spacing-md);
+    }
+
+    .next-step-card h4 {
+        color: var(--white);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .next-step-card p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.875rem;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .results-actions {
+        text-align: center;
+        display: flex;
+        gap: var(--spacing-md);
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn-outline {
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        color: var(--white);
+    }
+
+    .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+        .analysis-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .strengths-grid,
+        .development-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .next-steps-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .results-actions {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .results-card {
+            padding: var(--spacing-lg);
+        }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Error - Evergrow360{% endblock %}
+
+{% block content %}
+<div class="onboarding-container">
+    <!-- Progress Header -->
+    <header class="onboarding-header">
+        <div class="container">
+            <div class="flex-between">
+                <div class="logo">
+                    <h2>Evergrow360</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="onboarding-main">
+        <div class="container-sm">
+            <div class="error-card">
+                <div class="error-header">
+                    <h1>{{ error or 'Something went wrong' }}</h1>
+                    <p>{{ message or 'Please try again later.' }}</p>
+                </div>
+
+                <div class="error-actions">
+                    <a href="/dashboard" class="btn btn-primary">Go to Dashboard</a>
+                    <a href="/assessment/form" class="btn btn-secondary">Try Assessment Again</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<style>
+    .error-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-xl);
+        box-shadow: var(--shadow-lg);
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .error-header {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .error-header h1 {
+        margin-bottom: var(--spacing-sm);
+        color: #e74c3c;
+    }
+
+    .error-header p {
+        color: var(--slate-medium);
+        font-size: 1.125rem;
+    }
+
+    .error-actions {
+        display: flex;
+        gap: var(--spacing-md);
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+        .error-actions {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+{% endblock %}

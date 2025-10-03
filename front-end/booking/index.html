@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Session - Evergrow360</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h2>Evergrow360</h2>
+                </div>
+                
+                <nav class="main-nav">
+                    <a href="../dashboard/index.html" class="nav-link">Dashboard</a>
+                    <a href="../marketplace/index.html" class="nav-link">Marketplace</a>
+                    <a href="../sessions/index.html" class="nav-link">My Sessions</a>
+                    <a href="../profile/index.html" class="nav-link">Profile</a>
+                </nav>
+
+                <div class="header-actions">
+                    <div class="user-menu">
+                        <button class="user-avatar" onclick="toggleUserMenu()">
+                            <span id="userInitials">JD</span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="../profile/index.html">Profile Settings</a>
+                            <a href="../payments/billing.html">Billing</a>
+                            <a href="../feedback/support.html">Support</a>
+                            <hr>
+                            <a href="#" onclick="logout()">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="booking-main">
+        <div class="container">
+            <!-- Page Header -->
+            <section class="booking-header">
+                <h1>Book Your Session</h1>
+                <p>Schedule your coaching session and take the next step in your growth journey</p>
+            </section>
+
+            <!-- Booking Form -->
+            <div class="booking-container">
+                <!-- Step Indicator -->
+                <div class="booking-steps">
+                    <div class="step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Session Details</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Schedule</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Payment</span>
+                    </div>
+                    <div class="step" data-step="4">
+                        <span class="step-number">4</span>
+                        <span class="step-label">Confirmation</span>
+                    </div>
+                </div>
+
+                <!-- Booking Content -->
+                <div class="booking-content">
+                    <!-- Step 1: Session Details -->
+                    <div class="booking-step" id="step1">
+                        <div class="booking-grid">
+                            <!-- Selected Item Details -->
+                            <div class="selected-item-card">
+                                <h3>Selected Session</h3>
+                                <div class="item-details" id="selectedItemDetails">
+                                    <!-- Will be populated dynamically -->
+                                </div>
+                            </div>
+
+                            <!-- Session Options -->
+                            <div class="session-options">
+                                <h3>Session Preferences</h3>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Session Type</label>
+                                    <div class="radio-group">
+                                        <label class="radio-option">
+                                            <input type="radio" name="sessionType" value="individual" checked>
+                                            <span class="radio-custom"></span>
+                                            <div class="radio-content">
+                                                <strong>Individual Session</strong>
+                                                <p>One-on-one personalized coaching</p>
+                                            </div>
+                                        </label>
+                                        <label class="radio-option" id="groupOption">
+                                            <input type="radio" name="sessionType" value="group">
+                                            <span class="radio-custom"></span>
+                                            <div class="radio-content">
+                                                <strong>Group Session</strong>
+                                                <p>Join with other participants (2-6 people)</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Session Duration</label>
+                                    <select class="form-select" id="sessionDuration">
+                                        <option value="60">60 minutes - €250</option>
+                                        <option value="90">90 minutes - €350</option>
+                                        <option value="120">120 minutes - €450</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Focus Areas (Optional)</label>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-option">
+                                            <input type="checkbox" value="leadership">
+                                            <span class="checkbox-custom"></span>
+                                            Leadership Skills
+                                        </label>
+                                        <label class="checkbox-option">
+                                            <input type="checkbox" value="communication">
+                                            <span class="checkbox-custom"></span>
+                                            Communication
+                                        </label>
+                                        <label class="checkbox-option">
+                                            <input type="checkbox" value="strategy">
+                                            <span class="checkbox-custom"></span>
+                                            Strategic Thinking
+                                        </label>
+                                        <label class="checkbox-option">
+                                            <input type="checkbox" value="management">
+                                            <span class="checkbox-custom"></span>
+                                            Team Management
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Additional Notes</label>
+                                    <textarea 
+                                        class="form-textarea" 
+                                        id="sessionNotes"
+                                        placeholder="Any specific topics or challenges you'd like to focus on..."
+                                        rows="4"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn btn-primary btn-lg" onclick="nextStep()">
+                                Continue to Schedule
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Schedule -->
+                    <div class="booking-step hidden" id="step2">
+                        <div class="booking-grid">
+                            <!-- Calendar -->
+                            <div class="calendar-section">
+                                <h3>Select Date & Time</h3>
+                                <div class="calendar-container">
+                                    <div class="calendar-header">
+                                        <button class="calendar-nav" onclick="previousMonth()">&lt;</button>
+                                        <h4 id="calendarMonth">January 2024</h4>
+                                        <button class="calendar-nav" onclick="nextMonth()">&gt;</button>
+                                    </div>
+                                    <div class="calendar-grid" id="calendarGrid">
+                                        <!-- Calendar will be generated dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Time Slots -->
+                            <div class="timeslots-section">
+                                <h3>Available Times</h3>
+                                <div class="date-selected" id="dateSelected">
+                                    Please select a date
+                                </div>
+                                <div class="timeslots-container" id="timeslots">
+                                    <!-- Time slots will be populated when date is selected -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="booking-summary">
+                            <h4>Booking Summary</h4>
+                            <div class="summary-details" id="bookingSummary">
+                                <!-- Summary will be populated -->
+                            </div>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn btn-secondary" onclick="previousStep()">Back</button>
+                            <button class="btn btn-primary btn-lg" onclick="nextStep()" id="continueToPayment" disabled>
+                                Continue to Payment
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Payment -->
+                    <div class="booking-step hidden" id="step3">
+                        <div class="booking-grid">
+                            <!-- Payment Options -->
+                            <div class="payment-section">
+                                <h3>Payment Method</h3>
+                                
+                                <div class="payment-options">
+                                    <label class="payment-option">
+                                        <input type="radio" name="paymentMethod" value="card" checked>
+                                        <span class="payment-icon">💳</span>
+                                        <div class="payment-content">
+                                            <strong>Credit/Debit Card</strong>
+                                            <p>Secure payment via Stripe</p>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="payment-option">
+                                        <input type="radio" name="paymentMethod" value="paypal">
+                                        <span class="payment-icon">🏦</span>
+                                        <div class="payment-content">
+                                            <strong>PayPal</strong>
+                                            <p>Pay with your PayPal account</p>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="payment-option">
+                                        <input type="radio" name="paymentMethod" value="credits">
+                                        <span class="payment-icon">🎟️</span>
+                                        <div class="payment-content">
+                                            <strong>Session Credits</strong>
+                                            <p>Use your available credits (3 remaining)</p>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <!-- Card Form -->
+                                <div class="card-form" id="cardForm">
+                                    <div class="form-group">
+                                        <label class="form-label">Card Number</label>
+                                        <input type="text" class="form-input" placeholder="1234 5678 9012 3456" id="cardNumber">
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Expiry Date</label>
+                                            <input type="text" class="form-input" placeholder="MM/YY" id="expiryDate">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">CVV</label>
+                                            <input type="text" class="form-input" placeholder="123" id="cvv">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label">Cardholder Name</label>
+                                        <input type="text" class="form-input" placeholder="John Doe" id="cardholderName">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Order Summary -->
+                            <div class="order-summary">
+                                <h3>Order Summary</h3>
+                                <div class="summary-content" id="orderSummary">
+                                    <!-- Order details will be populated -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn btn-secondary" onclick="previousStep()">Back</button>
+                            <button class="btn btn-primary btn-lg" onclick="processPayment()">
+                                Complete Booking
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Confirmation -->
+                    <div class="booking-step hidden" id="step4">
+                        <div class="confirmation-content">
+                            <div class="confirmation-icon">✅</div>
+                            <h2>Booking Confirmed!</h2>
+                            <p>Your session has been successfully booked. You'll receive a confirmation email shortly.</p>
+                            
+                            <div class="confirmation-details" id="confirmationDetails">
+                                <!-- Confirmation details will be populated -->
+                            </div>
+                            
+                            <div class="confirmation-actions">
+                                <button class="btn btn-primary btn-lg" onclick="goToDashboard()">
+                                    Go to Dashboard
+                                </button>
+                                <button class="btn btn-secondary" onclick="viewSessions()">
+                                    View My Sessions
+                                </button>
+                            </div>
+                            
+                            <div class="next-steps">
+                                <h4>What's Next?</h4>
+                                <ul>
+                                    <li>📧 Check your email for session details and meeting link</li>
+                                    <li>📅 Add the session to your calendar</li>
+                                    <li>📝 Complete any pre-session materials if provided</li>
+                                    <li>🎯 Prepare your goals and questions for the session</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../shared/utils.js"></script>
+    <script>
+        let currentStep = 1;
+        let selectedItem = null;
+        let selectedDate = null;
+        let selectedTime = null;
+        let bookingData = {};
+
+        // Initialize booking page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeBooking();
+            loadSelectedItem();
+            generateCalendar();
+        });
+
+        function initializeBooking() {
+            // Check authentication
+            const session = Evergrow360.Utils.getStorage('userSession');
+            if (!session) {
+                window.location.href = '../auth/login.html';
+                return;
+            }
+
+            // Set user initials
+            const userData = Evergrow360.Utils.getStorage('userData') || {};
+            const tempUserData = Evergrow360.Utils.getStorage('tempUserData') || {};
+            const name = userData.name || tempUserData.name || session.email.split('@')[0];
+            const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+            document.getElementById('userInitials').textContent = initials;
+        }
+
+        function loadSelectedItem() {
+            selectedItem = Evergrow360.Utils.getStorage('selectedItem');
+            
+            if (!selectedItem) {
+                // Redirect to marketplace if no item selected
+                window.location.href = '../marketplace/index.html';
+                return;
+            }
+
+            // Populate selected item details
+            const container = document.getElementById('selectedItemDetails');
+            container.innerHTML = `
+                <div class="item-info">
+                    <img src="${selectedItem.image}" alt="${selectedItem.name}" class="item-image">
+                    <div class="item-content">
+                        <h4>${selectedItem.name}</h4>
+                        <p class="item-instructor">${selectedItem.instructor || selectedItem.facilitator || 'with ' + selectedItem.name}</p>
+                        <div class="item-rating">
+                            <div class="stars">
+                                ${'★'.repeat(Math.floor(selectedItem.rating))}${'☆'.repeat(5 - Math.floor(selectedItem.rating))}
+                            </div>
+                            <span>${selectedItem.rating} (${selectedItem.reviews} reviews)</span>
+                        </div>
+                        <div class="item-price">€${selectedItem.price}${selectedItem.type === 'coach' ? '/session' : ''}</div>
+                    </div>
+                </div>
+            `;
+
+            // Hide group option for courses
+            if (selectedItem.type === 'course') {
+                document.getElementById('groupOption').style.display = 'none';
+            }
+        }
+
+        function generateCalendar() {
+            const now = new Date();
+            const currentMonth = now.getMonth();
+            const currentYear = now.getFullYear();
+            
+            generateCalendarMonth(currentYear, currentMonth);
+        }
+
+        function generateCalendarMonth(year, month) {
+            const monthNames = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+            
+            document.getElementById('calendarMonth').textContent = `${monthNames[month]} ${year}`;
+            
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const startDate = new Date(firstDay);
+            startDate.setDate(startDate.getDate() - firstDay.getDay());
+            
+            const calendar = document.getElementById('calendarGrid');
+            calendar.innerHTML = '';
+            
+            // Add day headers
+            const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            dayHeaders.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'calendar-day-header';
+                dayHeader.textContent = day;
+                calendar.appendChild(dayHeader);
+            });
+            
+            // Add calendar days
+            const currentDate = new Date(startDate);
+            for (let i = 0; i < 42; i++) { // 6 weeks x 7 days
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = currentDate.getDate();
+                
+                if (currentDate.getMonth() !== month) {
+                    dayElement.classList.add('other-month');
+                } else if (currentDate < new Date().setHours(0, 0, 0, 0)) {
+                    dayElement.classList.add('past-date');
+                } else {
+                    dayElement.classList.add('available');
+                    dayElement.onclick = () => selectDate(new Date(currentDate));
+                }
+                
+                calendar.appendChild(dayElement);
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+        }
+
+        function selectDate(date) {
+            selectedDate = date;
+            
+            // Update selected date display
+            document.getElementById('dateSelected').textContent = 
+                `Selected: ${Evergrow360.Utils.formatDate(date)}`;
+            
+            // Clear previous selection
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            
+            // Mark selected date
+            event.target.classList.add('selected');
+            
+            // Generate time slots
+            generateTimeSlots(date);
+            
+            updateBookingSummary();
+        }
+
+        function generateTimeSlots(date) {
+            const container = document.getElementById('timeslots');
+            const timeSlots = [
+                '09:00', '10:00', '11:00', '12:00', 
+                '14:00', '15:00', '16:00', '17:00', '18:00'
+            ];
+            
+            container.innerHTML = timeSlots.map(time => `
+                <button class="timeslot" onclick="selectTime('${time}')">${time}</button>
+            `).join('');
+        }
+
+        function selectTime(time) {
+            selectedTime = time;
+            
+            // Clear previous selection
+            document.querySelectorAll('.timeslot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Mark selected time
+            event.target.classList.add('selected');
+            
+            // Enable continue button
+            document.getElementById('continueToPayment').disabled = false;
+            
+            updateBookingSummary();
+        }
+
+        function updateBookingSummary() {
+            if (!selectedDate || !selectedTime) return;
+            
+            const duration = document.getElementById('sessionDuration').value;
+            const sessionType = document.querySelector('input[name="sessionType"]:checked').value;
+            
+            const summary = document.getElementById('bookingSummary');
+            summary.innerHTML = `
+                <div class="summary-item">
+                    <span>Session:</span>
+                    <span>${selectedItem.name}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Type:</span>
+                    <span>${sessionType.charAt(0).toUpperCase() + sessionType.slice(1)}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Date:</span>
+                    <span>${Evergrow360.Utils.formatDate(selectedDate)}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Time:</span>
+                    <span>${selectedTime}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Duration:</span>
+                    <span>${duration} minutes</span>
+                </div>
+            `;
+        }
+
+        function nextStep() {
+            if (currentStep < 4) {
+                // Hide current step
+                document.getElementById(`step${currentStep}`).classList.add('hidden');
+                
+                // Update step indicator
+                document.querySelector(`.step[data-step="${currentStep}"]`).classList.remove('active');
+                document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('completed');
+                
+                // Show next step
+                currentStep++;
+                document.getElementById(`step${currentStep}`).classList.remove('hidden');
+                document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('active');
+                
+                // Handle step-specific logic
+                if (currentStep === 3) {
+                    updateOrderSummary();
+                }
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                // Hide current step
+                document.getElementById(`step${currentStep}`).classList.add('hidden');
+                
+                // Update step indicator
+                document.querySelector(`.step[data-step="${currentStep}"]`).classList.remove('active');
+                
+                // Show previous step
+                currentStep--;
+                document.getElementById(`step${currentStep}`).classList.remove('hidden');
+                document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('active');
+                document.querySelector(`.step[data-step="${currentStep}"]`).classList.remove('completed');
+            }
+        }
+
+        function updateOrderSummary() {
+            const duration = document.getElementById('sessionDuration').value;
+            const sessionType = document.querySelector('input[name="sessionType"]:checked').value;
+            const price = getSessionPrice(duration, sessionType);
+            
+            const summary = document.getElementById('orderSummary');
+            summary.innerHTML = `
+                <div class="order-item">
+                    <span>${selectedItem.name}</span>
+                    <span>€${price}</span>
+                </div>
+                <div class="order-item">
+                    <span>${sessionType.charAt(0).toUpperCase() + sessionType.slice(1)} Session (${duration}min)</span>
+                    <span>€0</span>
+                </div>
+                <div class="order-divider"></div>
+                <div class="order-total">
+                    <span><strong>Total</strong></span>
+                    <span><strong>€${price}</strong></span>
+                </div>
+                <div class="order-note">
+                    <small>Secure payment processed by Stripe</small>
+                </div>
+            `;
+        }
+
+        function getSessionPrice(duration, type) {
+            const basePrice = selectedItem.price;
+            const durationMultiplier = {
+                '60': 1,
+                '90': 1.4,
+                '120': 1.8
+            };
+            const typeMultiplier = type === 'group' ? 0.7 : 1;
+            
+            return Math.round(basePrice * durationMultiplier[duration] * typeMultiplier);
+        }
+
+        function processPayment() {
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            
+            // Show loading state
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            Evergrow360.Utils.showLoading(btn, 'Processing...');
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                Evergrow360.Utils.hideLoading(btn, originalText);
+                
+                // Store booking confirmation
+                const bookingConfirmation = {
+                    id: Evergrow360.Utils.generateUUID(),
+                    item: selectedItem,
+                    date: selectedDate,
+                    time: selectedTime,
+                    duration: document.getElementById('sessionDuration').value,
+                    type: document.querySelector('input[name="sessionType"]:checked').value,
+                    paymentMethod: paymentMethod,
+                    amount: getSessionPrice(document.getElementById('sessionDuration').value, 
+                                         document.querySelector('input[name="sessionType"]:checked').value),
+                    bookedAt: new Date().toISOString()
+                };
+                
+                Evergrow360.Utils.setStorage('lastBooking', bookingConfirmation);
+                
+                // Move to confirmation step
+                nextStep();
+                showConfirmation(bookingConfirmation);
+            }, 2000);
+        }
+
+        function showConfirmation(booking) {
+            const container = document.getElementById('confirmationDetails');
+            container.innerHTML = `
+                <div class="confirmation-card">
+                    <h4>Session Details</h4>
+                    <div class="confirmation-info">
+                        <div class="info-item">
+                            <span class="info-label">Session:</span>
+                            <span class="info-value">${booking.item.name}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Date & Time:</span>
+                            <span class="info-value">${Evergrow360.Utils.formatDateTime(booking.date)} ${booking.time}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Duration:</span>
+                            <span class="info-value">${booking.duration} minutes</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Type:</span>
+                            <span class="info-value">${booking.type.charAt(0).toUpperCase() + booking.type.slice(1)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Amount Paid:</span>
+                            <span class="info-value">€${booking.amount}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Booking ID:</span>
+                            <span class="info-value">${booking.id.substring(0, 8)}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function goToDashboard() {
+            window.location.href = '../dashboard/index.html';
+        }
+
+        function viewSessions() {
+            window.location.href = '../sessions/index.html';
+        }
+
+        function toggleUserMenu() {
+            document.getElementById('userDropdown').classList.toggle('active');
+        }
+
+        function logout() {
+            Evergrow360.Utils.removeStorage('userSession');
+            window.location.href = '../auth/login.html';
+        }
+
+        // Payment method change handler
+        document.addEventListener('change', function(e) {
+            if (e.target.name === 'paymentMethod') {
+                const cardForm = document.getElementById('cardForm');
+                cardForm.style.display = e.target.value === 'card' ? 'block' : 'none';
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const userMenu = document.querySelector('.user-menu');
+            if (!userMenu.contains(e.target)) {
+                document.getElementById('userDropdown').classList.remove('active');
+            }
+        });
+    </script>
+
+    <style>
+        /* Include navigation styles */
+        .dashboard-header {
+            background: var(--white);
+            border-bottom: 1px solid rgba(136, 151, 168, 0.1);
+            padding: var(--spacing-md) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo h2 { color: var(--gold-primary); margin: 0; }
+        .main-nav { display: flex; gap: var(--spacing-lg); }
+        .nav-link {
+            text-decoration: none; color: var(--slate-medium); font-weight: 500;
+            padding: var(--spacing-xs) 0; border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold-primary); border-bottom-color: var(--gold-primary);
+        }
+        .header-actions { display: flex; align-items: center; gap: var(--spacing-md); }
+        .user-menu { position: relative; }
+        .user-avatar {
+            width: 40px; height: 40px; border-radius: 50%; background: var(--gold-primary);
+            color: var(--white); border: none; cursor: pointer; font-weight: 600;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .user-dropdown {
+            position: absolute; top: 100%; right: 0; background: var(--white);
+            border: 1px solid rgba(136, 151, 168, 0.1); border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md); min-width: 180px; opacity: 0; visibility: hidden;
+            transform: translateY(-10px); transition: all 0.3s ease; z-index: 1000;
+        }
+        .user-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .user-dropdown a {
+            display: block; padding: var(--spacing-sm) var(--spacing-md);
+            text-decoration: none; color: var(--slate-dark); font-size: 0.875rem;
+            transition: background 0.3s ease;
+        }
+        .user-dropdown a:hover { background: var(--gray-background); }
+        .user-dropdown hr { margin: 0; border: none; border-top: 1px solid rgba(136, 151, 168, 0.1); }
+
+        /* Booking specific styles */
+        .booking-main {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .booking-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .booking-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .booking-header p {
+            font-size: 1.125rem;
+            color: var(--slate-medium);
+        }
+
+        .booking-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .booking-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+
+        .booking-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 25%;
+            right: 25%;
+            height: 2px;
+            background: var(--slate-light);
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--slate-light);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-number {
+            background: var(--gold-primary);
+        }
+
+        .step.completed .step-number {
+            background: var(--green-success);
+        }
+
+        .step-label {
+            font-size: 0.875rem;
+            color: var(--slate-medium);
+            text-align: center;
+        }
+
+        .booking-content {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .selected-item-card,
+        .session-options,
+        .calendar-section,
+        .timeslots-section,
+        .payment-section,
+        .order-summary {
+            background: var(--gray-background);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+        }
+
+        .item-info {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .item-image {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+        }
+
+        .item-content h4 {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .item-instructor {
+            color: var(--slate-medium);
+            font-size: 0.875rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .item-rating {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stars {
+            color: var(--gold-primary);
+            font-size: 0.875rem;
+        }
+
+        .item-price {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gold-primary);
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md);
+            border: 1px solid var(--slate-light);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .radio-option:hover,
+        .checkbox-option:hover {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .radio-custom,
+        .checkbox-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--slate-light);
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .checkbox-custom {
+            border-radius: var(--radius-sm);
+        }
+
+        .radio-option input:checked ~ .radio-custom,
+        .checkbox-option input:checked ~ .checkbox-custom {
+            border-color: var(--gold-primary);
+        }
+
+        .radio-option input:checked ~ .radio-custom::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .checkbox-option input:checked ~ .checkbox-custom::after {
+            content: '✓';
+            color: var(--gold-primary);
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.875rem;
+        }
+
+        .radio-content {
+            flex: 1;
+        }
+
+        .radio-content strong {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .radio-content p {
+            font-size: 0.875rem;
+            color: var(--slate-medium);
+        }
+
+        .calendar-container {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .calendar-nav {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: var(--spacing-xs);
+            border-radius: var(--radius-sm);
+        }
+
+        .calendar-nav:hover {
+            background: var(--gray-background);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 500;
+            padding: var(--spacing-xs);
+            color: var(--slate-medium);
+            font-size: 0.875rem;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-day.available:hover {
+            background: var(--gold-light);
+            color: var(--white);
+        }
+
+        .calendar-day.selected {
+            background: var(--gold-primary);
+            color: var(--white);
+        }
+
+        .calendar-day.past-date {
+            color: var(--slate-light);
+            cursor: not-allowed;
+        }
+
+        .calendar-day.other-month {
+            color: var(--slate-light);
+        }
+
+        .date-selected {
+            font-weight: 500;
+            margin-bottom: var(--spacing-md);
+            color: var(--gold-primary);
+        }
+
+        .timeslots-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-sm);
+        }
+
+        .timeslot {
+            padding: var(--spacing-sm);
+            border: 1px solid var(--slate-light);
+            background: var(--white);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeslot:hover {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .timeslot.selected {
+            background: var(--gold-primary);
+            color: var(--white);
+            border-color: var(--gold-primary);
+        }
+
+        .booking-summary {
+            background: var(--gray-background);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .summary-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-xs) 0;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            border: 1px solid var(--slate-light);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .payment-option input:checked ~ .payment-icon {
+            transform: scale(1.1);
+        }
+
+        .payment-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .payment-content strong {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .payment-content p {
+            font-size: 0.875rem;
+            color: var(--slate-medium);
+        }
+
+        .card-form {
+            background: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--slate-light);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-md);
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-sm) 0;
+        }
+
+        .order-divider {
+            height: 1px;
+            background: var(--slate-light);
+            margin: var(--spacing-md) 0;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-sm) 0;
+            font-size: 1.125rem;
+        }
+
+        .order-note {
+            text-align: center;
+            margin-top: var(--spacing-md);
+            color: var(--slate-light);
+        }
+
+        .step-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--spacing-md);
+        }
+
+        .step-actions .btn {
+            min-width: 150px;
+        }
+
+        .confirmation-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .confirmation-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .confirmation-content h2 {
+            margin-bottom: var(--spacing-md);
+            color: var(--green-success);
+        }
+
+        .confirmation-details {
+            margin: var(--spacing-xl) 0;
+        }
+
+        .confirmation-card {
+            background: var(--gray-background);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            text-align: left;
+        }
+
+        .confirmation-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-xs) 0;
+        }
+
+        .info-label {
+            font-weight: 500;
+        }
+
+        .confirmation-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .next-steps {
+            background: var(--gray-background);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            text-align: left;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .next-steps li {
+            padding: var(--spacing-xs) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        @media (max-width: 768px) {
+            .booking-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-steps {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .booking-steps::before {
+                display: none;
+            }
+
+            .step {
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+
+            .step-number {
+                margin-bottom: 0;
+                margin-right: var(--spacing-sm);
+            }
+
+            .timeslots-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step-actions {
+                flex-direction: column;
+            }
+
+            .confirmation-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</body>
+</html>

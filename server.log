@@ -1,0 +1,553 @@
+Starting Evergrow360 API server...
+Environment: development
+Debug mode: True
+Server: http://127.0.0.1:5001
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+[33mPress CTRL+C to quit[0m
+[2025-10-03 11:15:47,059] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:15:47] "GET /health HTTP/1.1" 200 -
+[2025-10-03 11:15:47,074] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:15:47] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 11:15:47,086] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:15:47] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1759482947.189970 3616076 alts_credentials.cc:93] ALTS creds ignored. Not running on GCP and untrusted ALTS is not enabled.
+[2025-10-03 11:15:47,954] INFO in security: Access: {'timestamp': '2025-10-03T09:15:47.954239+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:15:47,954] INFO in security: Access: {'timestamp': '2025-10-03T09:15:47.954459+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:15:47,954] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:15:47] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 11:15:48,268] INFO in security: Access: {'timestamp': '2025-10-03T09:15:48.267953+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:15:48,268] INFO in security: Access: {'timestamp': '2025-10-03T09:15:48.268162+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:15:48,268] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:15:48] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 11:15:48,379] INFO in security: Access: {'timestamp': '2025-10-03T09:15:48.379273+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'register', 'resource': 'user_account', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:15:48,379] INFO in __init__: Response: 409
+127.0.0.1 - - [03/Oct/2025 11:15:48] "[31m[1mPOST /api/auth/register HTTP/1.1[0m" 409 -
+[2025-10-03 11:15:48,610] INFO in security: Access: {'timestamp': '2025-10-03T09:15:48.610659+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': False, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:15:48,610] INFO in security: Access: {'timestamp': '2025-10-03T09:15:48.610816+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:15:48,610] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 11:15:48] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+[2025-10-03 11:15:48,693] INFO in security: Access: {'timestamp': '2025-10-03T09:15:48.693448+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'get_user_profile', 'resource': 'user_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:15:48,693] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:15:48] "GET /api/user/profile HTTP/1.1" 200 -
+[2025-10-03 11:15:48,708] INFO in security: Access: {'timestamp': '2025-10-03T09:15:48.708673+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'start_assessment', 'resource': 'assessment_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:15:48,708] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:15:48] "GET /api/assessment/start HTTP/1.1" 200 -
+[2025-10-03 11:15:48,727] INFO in assessment: Assessment data validated successfully: 10 fields
+[2025-10-03 11:15:48,728] WARNING in security: Generated new encryption key - store securely!
+[2025-10-03 11:15:48,929] INFO in assessment: Assessment saved with ID: 54c7b55e-497e-48d6-928d-8dfbd38d8b73
+[2025-10-03 11:15:48,929] INFO in assessment: Assessment processing completed successfully
+[2025-10-03 11:15:48,929] ERROR in assessment: AI analysis failed: 'AICoachingService' object has no attribute 'analyze_assessment_sync'
+[2025-10-03 11:15:49,092] INFO in security: Access: {'timestamp': '2025-10-03T09:15:49.092458+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'submit_assessment', 'resource': 'assessment_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:15:49,093] INFO in __init__: Response: 201
+127.0.0.1 - - [03/Oct/2025 11:15:49] "[35m[1mPOST /api/assessment/submit HTTP/1.1[0m" 201 -
+[2025-10-03 11:15:49,127] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 11:15:49] "[31m[1mGET /api/user/profile HTTP/1.1[0m" 401 -
+[2025-10-03 11:15:49,140] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:15:49] "GET /health HTTP/1.1" 200 -
+[2025-10-03 11:15:49,152] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:15:49] "GET /api HTTP/1.1" 200 -
+[2025-10-03 11:15:49,446] INFO in security: Access: {'timestamp': '2025-10-03T09:15:49.446221+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '6bc88d445710057e'}
+[2025-10-03 11:15:49,446] INFO in security: Access: {'timestamp': '2025-10-03T09:15:49.446424+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '6bc88d445710057e'}
+[2025-10-03 11:15:49,446] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:15:49] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 11:15:49,752] INFO in security: Access: {'timestamp': '2025-10-03T09:15:49.752464+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '182077c2c1a56375'}
+[2025-10-03 11:15:49,752] INFO in security: Access: {'timestamp': '2025-10-03T09:15:49.752658+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '182077c2c1a56375'}
+[2025-10-03 11:15:49,752] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:15:49] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 11:15:50,061] INFO in security: Access: {'timestamp': '2025-10-03T09:15:50.061531+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '7e716fe430038d43'}
+[2025-10-03 11:15:50,061] INFO in security: Access: {'timestamp': '2025-10-03T09:15:50.061802+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '7e716fe430038d43'}
+[2025-10-03 11:15:50,061] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:15:50] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 11:15:50,265] INFO in security: Access: {'timestamp': '2025-10-03T09:15:50.265678+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': False, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:15:50,266] INFO in security: Access: {'timestamp': '2025-10-03T09:15:50.266002+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:15:50,266] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 11:15:50] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+[2025-10-03 11:16:39,865] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:16:39] "GET /health HTTP/1.1" 200 -
+[2025-10-03 11:16:39,889] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:16:39] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 11:16:39,901] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:16:39] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 11:16:40,198] INFO in security: Access: {'timestamp': '2025-10-03T09:16:40.198654+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:16:40,198] INFO in security: Access: {'timestamp': '2025-10-03T09:16:40.198911+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:16:40,199] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:16:40] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 11:16:40,503] INFO in security: Access: {'timestamp': '2025-10-03T09:16:40.503156+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:16:40,503] INFO in security: Access: {'timestamp': '2025-10-03T09:16:40.503348+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:16:40,503] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:16:40] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 11:16:40,587] INFO in security: Access: {'timestamp': '2025-10-03T09:16:40.587700+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'register', 'resource': 'user_account', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:16:40,587] INFO in __init__: Response: 409
+127.0.0.1 - - [03/Oct/2025 11:16:40] "[31m[1mPOST /api/auth/register HTTP/1.1[0m" 409 -
+DEBUG: GET http://127.0.0.1:5001/health from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+DEBUG: OPTIONS http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Origin': 'http://localhost:3000', 'Access-Control-Request-Method': 'POST', 'Access-Control-Request-Headers': 'Content-Type,Authorization'}
+DEBUG: OPTIONS http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Origin': 'http://localhost:4000', 'Access-Control-Request-Method': 'POST', 'Access-Control-Request-Headers': 'Content-Type,Authorization'}
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/register from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Content-Length': '122'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","first_name":"Demo","marketing_consent":false,"terms_accepted":true}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '79'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"wrongpassword","remember_me":false}
+Firebase initialized successfully
+DEBUG: GET http://127.0.0.1:5001/api/user/profile from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTQ4Mjk0OCwianRpIjoiY2U1YWZjM2MtZWJkMi00YjJjLTk5ZTgtMWZkZmZiMjEwMDAxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjE4OGE1YzE3LWFjZDAtNTYyOC1lYWM3LTE3OTAzYWRiZmY1YSIsIm5iZiI6MTc1OTQ4Mjk0OCwiZXhwIjoxNzU5NDg2NTQ4fQ.UtQ7HIv9U3Jprr5NlbYfumE61E3v0hPhJ0a062n2gvM', 'Origin': 'http://localhost:3000'}
+DEBUG: GET http://127.0.0.1:5001/api/assessment/start from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTQ4Mjk0OCwianRpIjoiY2U1YWZjM2MtZWJkMi00YjJjLTk5ZTgtMWZkZmZiMjEwMDAxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjE4OGE1YzE3LWFjZDAtNTYyOC1lYWM3LTE3OTAzYWRiZmY1YSIsIm5iZiI6MTc1OTQ4Mjk0OCwiZXhwIjoxNzU5NDg2NTQ4fQ.UtQ7HIv9U3Jprr5NlbYfumE61E3v0hPhJ0a062n2gvM', 'Origin': 'http://localhost:3000'}
+DEBUG: POST http://127.0.0.1:5001/api/assessment/submit from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTQ4Mjk0OCwianRpIjoiY2U1YWZjM2MtZWJkMi00YjJjLTk5ZTgtMWZkZmZiMjEwMDAxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjE4OGE1YzE3LWFjZDAtNTYyOC1lYWM3LTE3OTAzYWRiZmY1YSIsIm5iZiI6MTc1OTQ4Mjk0OCwiZXhwIjoxNzU5NDg2NTQ4fQ.UtQ7HIv9U3Jprr5NlbYfumE61E3v0hPhJ0a062n2gvM', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '530'}
+DEBUG: Data: {
+        "professional_role": "Software Engineer",
+        "main_challenges": ["Time management", "Leadership presence"],
+        "skill_priorities": ["Communication", "Strategic thinking"],
+        
+DEBUG: GET http://127.0.0.1:5001/api/user/profile from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Origin': 'http://localhost:3000'}
+DEBUG: GET http://127.0.0.1:5001/health from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+DEBUG: GET http://127.0.0.1:5001/api from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '71'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"wrong","remember_me":false}
+Firebase initialized successfully
+DEBUG: GET http://127.0.0.1:5001/health from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+DEBUG: OPTIONS http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Origin': 'http://localhost:3000', 'Access-Control-Request-Method': 'POST', 'Access-Control-Request-Headers': 'Content-Type,Authorization'}
+DEBUG: OPTIONS http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Origin': 'http://localhost:4000', 'Access-Control-Request-Method': 'POST', 'Access-Control-Request-Headers': 'Content-Type,Authorization'}
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/register from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Content-Length': '122'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","first_name":"Demo","marketing_consent":false,"terms_accepted":true}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '79'}[2025-10-03 11:16:40,808] INFO in security: Access: {'timestamp': '2025-10-03T09:16:40.808887+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': False, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:16:40,809] INFO in security: Access: {'timestamp': '2025-10-03T09:16:40.809159+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:16:40,809] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 11:16:40] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+[2025-10-03 11:16:40,887] INFO in security: Access: {'timestamp': '2025-10-03T09:16:40.887061+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'get_user_profile', 'resource': 'user_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:16:40,887] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:16:40] "GET /api/user/profile HTTP/1.1" 200 -
+[2025-10-03 11:16:40,899] INFO in security: Access: {'timestamp': '2025-10-03T09:16:40.899620+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'start_assessment', 'resource': 'assessment_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:16:40,899] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:16:40] "GET /api/assessment/start HTTP/1.1" 200 -
+[2025-10-03 11:16:40,914] INFO in assessment: Assessment data validated successfully: 10 fields
+[2025-10-03 11:16:41,122] INFO in assessment: Assessment saved with ID: a75466b6-065c-478c-bba9-0bdd1ac06d4f
+[2025-10-03 11:16:41,122] INFO in assessment: Assessment processing completed successfully
+[2025-10-03 11:16:41,123] ERROR in assessment: AI analysis failed: 'AICoachingService' object has no attribute 'analyze_assessment_sync'
+[2025-10-03 11:16:41,212] INFO in security: Access: {'timestamp': '2025-10-03T09:16:41.212439+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'submit_assessment', 'resource': 'assessment_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:16:41,213] INFO in __init__: Response: 201
+127.0.0.1 - - [03/Oct/2025 11:16:41] "[35m[1mPOST /api/assessment/submit HTTP/1.1[0m" 201 -
+[2025-10-03 11:16:41,248] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 11:16:41] "[31m[1mGET /api/user/profile HTTP/1.1[0m" 401 -
+[2025-10-03 11:16:41,264] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:16:41] "GET /health HTTP/1.1" 200 -
+[2025-10-03 11:16:41,277] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:16:41] "GET /api HTTP/1.1" 200 -
+[2025-10-03 11:16:41,570] INFO in security: Access: {'timestamp': '2025-10-03T09:16:41.570543+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '6bc88d445710057e'}
+[2025-10-03 11:16:41,570] INFO in security: Access: {'timestamp': '2025-10-03T09:16:41.570735+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '6bc88d445710057e'}
+[2025-10-03 11:16:41,570] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:16:41] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 11:16:41,868] INFO in security: Access: {'timestamp': '2025-10-03T09:16:41.868021+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '182077c2c1a56375'}
+[2025-10-03 11:16:41,868] INFO in security: Access: {'timestamp': '2025-10-03T09:16:41.868207+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '182077c2c1a56375'}
+[2025-10-03 11:16:41,868] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:16:41] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 11:16:42,166] INFO in security: Access: {'timestamp': '2025-10-03T09:16:42.166318+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '7e716fe430038d43'}
+[2025-10-03 11:16:42,167] INFO in security: Access: {'timestamp': '2025-10-03T09:16:42.167160+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '7e716fe430038d43'}
+[2025-10-03 11:16:42,167] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:16:42] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 11:16:42,386] INFO in security: Access: {'timestamp': '2025-10-03T09:16:42.386737+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': False, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:16:42,386] INFO in security: Access: {'timestamp': '2025-10-03T09:16:42.386931+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 11:16:42,387] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 11:16:42] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+[2025-10-03 11:19:51,442] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 11:19:52] "GET /app/onboarding/assessment.html HTTP/1.1" 200 -
+[2025-10-03 11:19:52,346] INFO in __init__: Response: 404
+127.0.0.1 - - [03/Oct/2025 11:19:52] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+[2025-10-03 11:19:52,360] INFO in __init__: Response: 304
+127.0.0.1 - - [03/Oct/2025 11:19:52] "[36mGET /app/shared/styles.css HTTP/1.1[0m" 304 -
+[2025-10-03 11:19:52,361] INFO in __init__: Response: 304
+127.0.0.1 - - [03/Oct/2025 11:19:52] "[36mGET /app/shared/utils.js HTTP/1.1[0m" 304 -
+
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"wrongpassword","remember_me":false}
+Firebase initialized successfully
+DEBUG: GET http://127.0.0.1:5001/api/user/profile from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTQ4MzAwMCwianRpIjoiZGQ3ZWY5NTctYjRhZS00ZWJjLTg5MDQtYjc0MGRjMTRkNWY3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjE4OGE1YzE3LWFjZDAtNTYyOC1lYWM3LTE3OTAzYWRiZmY1YSIsIm5iZiI6MTc1OTQ4MzAwMCwiZXhwIjoxNzU5NDg2NjAwfQ.TPFtn-2urLrlZJ_nCtqa49WP9BUbY8xQfXbwaCMExqc', 'Origin': 'http://localhost:3000'}
+DEBUG: GET http://127.0.0.1:5001/api/assessment/start from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTQ4MzAwMCwianRpIjoiZGQ3ZWY5NTctYjRhZS00ZWJjLTg5MDQtYjc0MGRjMTRkNWY3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjE4OGE1YzE3LWFjZDAtNTYyOC1lYWM3LTE3OTAzYWRiZmY1YSIsIm5iZiI6MTc1OTQ4MzAwMCwiZXhwIjoxNzU5NDg2NjAwfQ.TPFtn-2urLrlZJ_nCtqa49WP9BUbY8xQfXbwaCMExqc', 'Origin': 'http://localhost:3000'}
+DEBUG: POST http://127.0.0.1:5001/api/assessment/submit from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTQ4MzAwMCwianRpIjoiZGQ3ZWY5NTctYjRhZS00ZWJjLTg5MDQtYjc0MGRjMTRkNWY3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjE4OGE1YzE3LWFjZDAtNTYyOC1lYWM3LTE3OTAzYWRiZmY1YSIsIm5iZiI6MTc1OTQ4MzAwMCwiZXhwIjoxNzU5NDg2NjAwfQ.TPFtn-2urLrlZJ_nCtqa49WP9BUbY8xQfXbwaCMExqc', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '530'}
+DEBUG: Data: {
+        "professional_role": "Software Engineer",
+        "main_challenges": ["Time management", "Leadership presence"],
+        "skill_priorities": ["Communication", "Strategic thinking"],
+        
+DEBUG: GET http://127.0.0.1:5001/api/user/profile from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Origin': 'http://localhost:3000'}
+DEBUG: GET http://127.0.0.1:5001/health from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+DEBUG: GET http://127.0.0.1:5001/api from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '71'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"wrong","remember_me":false}
+Firebase initialized successfully
+DEBUG: GET http://localhost:5001/app/onboarding/assessment.html from 127.0.0.1
+DEBUG: Headers: {'Host': 'localhost:5001', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '"Chromium";v="140", "Not=A?Brand";v="24", "Brave";v="140"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"macOS"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8', 'Sec-Gpc': '1', 'Accept-Language': 'en-US,en;q=0.5', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:5001/app/onboarding/welcome.html', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Dnt': '1', 'If-None-Match': '"1759472836.45865-21982-151787647"', 'If-Modified-Since': 'Fri, 03 Oct 2025 06:27:16 GMT'}
+DEBUG: GET http://localhost:5001/.well-known/appspecific/com.chrome.devtools.json from 127.0.0.1
+DEBUG: Headers: {'Host': 'localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'empty', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'en-US,en;q=0.9'}
+DEBUG: GET http://localhost:5001/app/shared/styles.css from 127.0.0.1
+DEBUG: Headers: {'Host': 'localhost:5001', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"macOS"', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Chromium";v="140", "Not=A?Brand";v="24", "Brave";v="140"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': 'text/css,*/*;q=0.1', 'Sec-Gpc': '1', 'Accept-Language': 'en-US,en;q=0.5', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'style', 'Referer': 'http://localhost:5001/app/onboarding/assessment.html', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Dnt': '1', 'If-None-Match': '"1759389231.3788857-11695-973935813"', 'If-Modified-Since': 'Thu, 02 Oct 2025 07:13:51 GMT'}
+DEBUG: GET http://localhost:5001/app/shared/utils.js from 127.0.0.1
+DEBUG: Headers: {'Host': 'localhost:5001', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"macOS"', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Chromium";v="140", "Not=A?Brand";v="24", "Brave";v="140"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Gpc': '1', 'Accept-Language': 'en-US,en;q=0.5', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'script', 'Referer': 'http://localhost:5001/app/onboarding/assessment.html', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Dnt': '1', 'If-None-Match': '"1759389060.427445-13701-278336486"', 'If-Modified-Since': 'Thu, 02 Oct 2025 07:11:00 GMT'}
+DEBUG: GET http://localhost:5001/app/auth/login.html from 127.0.0.1
+DEBUG: Headers: {'Host': 'localhost:5001', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '"Chromium";v="140", "Not=A?Brand";v="24", "Brave";v="140"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"macOS"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8', 'Sec-Gpc': '1', 'Accept-Language': 'en-US,en;q=0.5', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:5001/app/onboarding/assessment.html', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Dnt': '1', 'If-None-Match': '"1759415316.404305-11973-265032673"', 'If-Modified-Since': 'Thu, 02 Oct 2025 14:28:36 GMT'}[2025-10-03 11:19:52,586] INFO in __init__: Response: 304
+127.0.0.1 - - [03/Oct/2025 11:19:52] "[36mGET /app/auth/login.html HTTP/1.1[0m" 304 -
+[2025-10-03 11:19:52,655] INFO in __init__: Response: 404
+127.0.0.1 - - [03/Oct/2025 11:19:52] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+[2025-10-03 11:19:52,688] INFO in __init__: Response: 304
+127.0.0.1 - - [03/Oct/2025 11:19:52] "[36mGET /app/shared/styles.css HTTP/1.1[0m" 304 -
+[2025-10-03 11:19:52,688] INFO in __init__: Response: 304
+[2025-10-03 11:19:52,689] INFO in __init__: Response: 304
+127.0.0.1 - - [03/Oct/2025 11:19:52] "[36mGET /app/shared/api-connection.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [03/Oct/2025 11:19:52] "[36mGET /app/shared/utils.js HTTP/1.1[0m" 304 -
+[2025-10-03 12:05:41,190] INFO in security: Access: {'timestamp': '2025-10-03T10:05:41.179459+00:00', 'user_hash': '32c36d730547685c', 'action': 'refresh_token', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '5530668004a7370c'}
+/Users/mj/code/api-evergrow/.venv/lib/python3.13/site-packages/flask_jwt_extended/view_decorators.py:170: RuntimeWarning: coroutine 'FirebaseService.get_user_profile' was never awaited
+  return current_app.ensure_sync(fn)(*args, **kwargs)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+[2025-10-03 12:05:41,440] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 12:05:41] "POST /api/auth/refresh HTTP/1.1" 200 -
+[2025-10-03 14:03:00,300] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:00] "GET /health HTTP/1.1" 200 -
+[2025-10-03 14:03:00,430] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:00] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:03:00,469] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:00] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:03:04,314] INFO in security: Access: {'timestamp': '2025-10-03T12:03:04.312836+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:04,317] INFO in security: Access: {'timestamp': '2025-10-03T12:03:04.317897+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:04,320] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:04] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:03:04,713] INFO in security: Access: {'timestamp': '2025-10-03T12:03:04.713933+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:04,714] INFO in security: Access: {'timestamp': '2025-10-03T12:03:04.714103+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:04,714] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:04] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:03:04,851] INFO in security: Access: {'timestamp': '2025-10-03T12:03:04.851696+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'register', 'resource': 'user_account', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:04,851] INFO in __init__: Response: 409
+127.0.0.1 - - [03/Oct/2025 14:03:04] "[31m[1mPOST /api/auth/register HTTP/1.1[0m" 409 -
+[2025-10-03 14:03:05,123] INFO in security: Access: {'timestamp': '2025-10-03T12:03:05.123367+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': False, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:05,123] INFO in security: Access: {'timestamp': '2025-10-03T12:03:05.123593+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:05,123] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 14:03:05] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+[2025-10-03 14:03:05,245] INFO in security: Access: {'timestamp': '2025-10-03T12:03:05.245297+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'get_user_profile', 'resource': 'user_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:05,245] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:05] "GET /api/user/profile HTTP/1.1" 200 -
+[2025-10-03 14:03:05,311] INFO in security: Access: {'timestamp': '2025-10-03T12:03:05.311734+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'start_assessment', 'resource': 'assessment_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:05,312] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:05] "GET /api/assessment/start HTTP/1.1" 200 -
+[2025-10-03 14:03:05,350] INFO in assessment: Assessment data validated successfully: 10 fields
+[2025-10-03 14:03:05,620] INFO in assessment: Assessment saved with ID: 8db0fbef-b988-461a-ab82-8ee52045196b
+[2025-10-03 14:03:05,621] INFO in assessment: Assessment processing completed successfully
+[2025-10-03 14:03:05,630] ERROR in assessment: AI analysis failed: 'AICoachingService' object has no attribute 'analyze_assessment_sync'
+[2025-10-03 14:03:05,721] INFO in security: Access: {'timestamp': '2025-10-03T12:03:05.721094+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'submit_assessment', 'resource': 'assessment_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:05,721] INFO in __init__: Response: 201
+127.0.0.1 - - [03/Oct/2025 14:03:05] "[35m[1mPOST /api/assessment/submit HTTP/1.1[0m" 201 -
+
+DEBUG: GET http://localhost:5001/.well-known/appspecific/com.chrome.devtools.json from 127.0.0.1
+DEBUG: Headers: {'Host': 'localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'empty', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'en-US,en;q=0.9'}
+DEBUG: GET http://localhost:5001/app/shared/styles.css from 127.0.0.1
+DEBUG: Headers: {'Host': 'localhost:5001', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"macOS"', 'If-None-Match': '"1759389231.3788857-11695-973935813"', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Chromium";v="140", "Not=A?Brand";v="24", "Brave";v="140"', 'If-Modified-Since': 'Thu, 02 Oct 2025 07:13:51 GMT', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': 'text/css,*/*;q=0.1', 'Sec-Gpc': '1', 'Accept-Language': 'en-US,en;q=0.5', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'style', 'Referer': 'http://localhost:5001/app/auth/login.html', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Dnt': '1'}
+DEBUG: GET http://localhost:5001/app/shared/utils.js from 127.0.0.1
+DEBUG: Headers: {'Host': 'localhost:5001', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"macOS"', 'If-None-Match': '"1759389060.427445-13701-278336486"', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Chromium";v="140", "Not=A?Brand";v="24", "Brave";v="140"', 'If-Modified-Since': 'Thu, 02 Oct 2025 07:11:00 GMT', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Gpc': '1', 'Accept-Language': 'en-US,en;q=0.5', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'script', 'Referer': 'http://localhost:5001/app/auth/login.html', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Dnt': '1'}
+DEBUG: GET http://localhost:5001/app/shared/api-connection.js from 127.0.0.1
+DEBUG: Headers: {'Host': 'localhost:5001', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"macOS"', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Chromium";v="140", "Not=A?Brand";v="24", "Brave";v="140"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Gpc': '1', 'Accept-Language': 'en-US,en;q=0.5', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'script', 'Referer': 'http://localhost:5001/app/auth/login.html', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Dnt': '1', 'If-None-Match': '"1759415497.1154947-12239-3537377100"', 'If-Modified-Since': 'Thu, 02 Oct 2025 14:31:37 GMT'}
+DEBUG: POST http://localhost:5001/api/auth/refresh from 127.0.0.1
+DEBUG: Headers: {'Host': 'localhost:5001', 'Connection': 'keep-alive', 'Content-Length': '0', 'Sec-Ch-Ua-Platform': '"macOS"', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTQ4MjYzOSwianRpIjoiNjZkNWE3MDctNjEzZS00MTRlLWE2NGYtMWNlYzNhNWRkMTI4IiwidHlwZSI6InJlZnJlc2giLCJzdWIiOiIxODhhNWMxNy1hY2QwLTU2MjgtZWFjNy0xNzkwM2FkYmZmNWEiLCJuYmYiOjE3NTk0ODI2MzksImV4cCI6MTc2MjA3NDYzOX0.WojhFZ0BMynIHgQsQXQJjQ7RA9R7SxRcXqYdn95t9G4', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Chromium";v="140", "Not=A?Brand";v="24", "Brave";v="140"', 'Content-Type': 'application/json', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Gpc': '1', 'Accept-Language': 'en-US,en;q=0.5', 'Origin': 'http://localhost:5001', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:5001/app/auth/login.html', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Dnt': '1'}
+DEBUG: GET http://127.0.0.1:5001/health from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+DEBUG: OPTIONS http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Origin': 'http://localhost:3000', 'Access-Control-Request-Method': 'POST', 'Access-Control-Request-Headers': 'Content-Type,Authorization'}
+DEBUG: OPTIONS http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Origin': 'http://localhost:4000', 'Access-Control-Request-Method': 'POST', 'Access-Control-Request-Headers': 'Content-Type,Authorization'}
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/register from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Content-Length': '122'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","first_name":"Demo","marketing_consent":false,"terms_accepted":true}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '79'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"wrongpassword","remember_me":false}
+Firebase initialized successfully
+DEBUG: GET http://127.0.0.1:5001/api/user/profile from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTQ5Mjk4NCwianRpIjoiM2YyYzdhNTgtNGZmNC00NjBkLWFkNWItMWQ5Njg5NmU0OWRkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjE4OGE1YzE3LWFjZDAtNTYyOC1lYWM3LTE3OTAzYWRiZmY1YSIsIm5iZiI6MTc1OTQ5Mjk4NCwiZXhwIjoxNzU5NDk2NTg0fQ.hKCRU1Rf8R8N0k6vle7xjizT1Fd2WMX5QDVW3g8ZGzQ', 'Origin': 'http://localhost:3000'}
+DEBUG: GET http://127.0.0.1:5001/api/assessment/start from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTQ5Mjk4NCwianRpIjoiM2YyYzdhNTgtNGZmNC00NjBkLWFkNWItMWQ5Njg5NmU0OWRkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjE4OGE1YzE3LWFjZDAtNTYyOC1lYWM3LTE3OTAzYWRiZmY1YSIsIm5iZiI6MTc1OTQ5Mjk4NCwiZXhwIjoxNzU5NDk2NTg0fQ.hKCRU1Rf8R8N0k6vle7xjizT1Fd2WMX5QDVW3g8ZGzQ', 'Origin': 'http://localhost:3000'}
+DEBUG: POST http://127.0.0.1:5001/api/assessment/submit from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTQ5Mjk4NCwianRpIjoiM2YyYzdhNTgtNGZmNC00NjBkLWFkNWItMWQ5Njg5NmU0OWRkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjE4OGE1YzE3LWFjZDAtNTYyOC1lYWM3LTE3OTAzYWRiZmY1YSIsIm5iZiI6MTc1OTQ5Mjk4NCwiZXhwIjoxNzU5NDk2NTg0fQ.hKCRU1Rf8R8N0k6vle7xjizT1Fd2WMX5QDVW3g8ZGzQ', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '530'}
+DEBUG: Data: {
+        "professional_role": "Software Engineer",
+        "main_challenges": ["Time management", "Leadership presence"],
+        "skill_priorities": ["Communication", "Strategic thinking"],
+        
+DEBUG: GET http://127.0.0.1:5001/api/user/profile from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Origin': 'http://localhost:3000'}[2025-10-03 14:03:05,751] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 14:03:05] "[31m[1mGET /api/user/profile HTTP/1.1[0m" 401 -
+[2025-10-03 14:03:05,764] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:05] "GET /health HTTP/1.1" 200 -
+[2025-10-03 14:03:05,779] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:05] "GET /api HTTP/1.1" 200 -
+[2025-10-03 14:03:06,095] INFO in security: Access: {'timestamp': '2025-10-03T12:03:06.095735+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '6bc88d445710057e'}
+[2025-10-03 14:03:06,096] INFO in security: Access: {'timestamp': '2025-10-03T12:03:06.096022+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '6bc88d445710057e'}
+[2025-10-03 14:03:06,096] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:06] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:03:06,425] INFO in security: Access: {'timestamp': '2025-10-03T12:03:06.425886+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '182077c2c1a56375'}
+[2025-10-03 14:03:06,426] INFO in security: Access: {'timestamp': '2025-10-03T12:03:06.426068+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '182077c2c1a56375'}
+[2025-10-03 14:03:06,426] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:06] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:03:06,740] INFO in security: Access: {'timestamp': '2025-10-03T12:03:06.740141+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '7e716fe430038d43'}
+[2025-10-03 14:03:06,740] INFO in security: Access: {'timestamp': '2025-10-03T12:03:06.740320+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '7e716fe430038d43'}
+[2025-10-03 14:03:06,740] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:06] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:03:06,971] INFO in security: Access: {'timestamp': '2025-10-03T12:03:06.971460+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': False, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:06,971] INFO in security: Access: {'timestamp': '2025-10-03T12:03:06.971652+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:06,971] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 14:03:06] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+[2025-10-03 14:03:11,734] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:11] "GET /health HTTP/1.1" 200 -
+[2025-10-03 14:03:11,749] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:11] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:03:11,758] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:11] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:03:12,127] INFO in security: Access: {'timestamp': '2025-10-03T12:03:12.123543+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:12,127] INFO in security: Access: {'timestamp': '2025-10-03T12:03:12.127736+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:12,127] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:12] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:03:12,435] INFO in security: Access: {'timestamp': '2025-10-03T12:03:12.435105+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:12,437] INFO in security: Access: {'timestamp': '2025-10-03T12:03:12.437052+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:12,437] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:12] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:03:12,547] INFO in security: Access: {'timestamp': '2025-10-03T12:03:12.547518+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'register', 'resource': 'user_account', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:12,547] INFO in __init__: Response: 409
+127.0.0.1 - - [03/Oct/2025 14:03:12] "[31m[1mPOST /api/auth/register HTTP/1.1[0m" 409 -
+[2025-10-03 14:03:12,757] INFO in security: Access: {'timestamp': '2025-10-03T12:03:12.757508+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': False, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:12,757] INFO in security: Access: {'timestamp': '2025-10-03T12:03:12.757676+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:12,757] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 14:03:12] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+[2025-10-03 14:03:12,850] INFO in security: Access: {'timestamp': '2025-10-03T12:03:12.850244+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'get_user_profile', 'resource': 'user_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:12,850] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:12] "GET /api/user/profile HTTP/1.1" 200 -
+[2025-10-03 14:03:12,874] INFO in security: Access: {'timestamp': '2025-10-03T12:03:12.874509+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'start_assessment', 'resource': 'assessment_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:12,874] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:12] "GET /api/assessment/start HTTP/1.1" 200 -
+[2025-10-03 14:03:12,895] INFO in assessment: Assessment data validated successfully: 10 fields
+[2025-10-03 14:03:13,146] INFO in assessment: Assessment saved with ID: ec7f5097-7778-4191-8418-7f6aa4fead76
+[2025-10-03 14:03:13,146] INFO in assessment: Assessment processing completed successfully
+[2025-10-03 14:03:13,146] ERROR in assessment: AI analysis failed: 'AICoachingService' object has no attribute 'analyze_assessment_sync'
+[2025-10-03 14:03:13,254] INFO in security: Access: {'timestamp': '2025-10-03T12:03:13.254743+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'submit_assessment', 'resource': 'assessment_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:13,255] INFO in __init__: Response: 201
+127.0.0.1 - - [03/Oct/2025 14:03:13] "[35m[1mPOST /api/assessment/submit HTTP/1.1[0m" 201 -
+[2025-10-03 14:03:13,288] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 14:03:13] "[31m[1mGET /api/user/profile HTTP/1.1[0m" 401 -
+[2025-10-03 14:03:13,301] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:13] "GET /health HTTP/1.1" 200 -
+[2025-10-03 14:03:13,312] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:13] "GET /api HTTP/1.1" 200 -
+[2025-10-03 14:03:13,623] INFO in security: Access: {'timestamp': '2025-10-03T12:03:13.623435+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '6bc88d445710057e'}
+[2025-10-03 14:03:13,623] INFO in security: Access: {'timestamp': '2025-10-03T12:03:13.623643+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '6bc88d445710057e'}
+[2025-10-03 14:03:13,623] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:13] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:03:13,936] INFO in security: Access: {'timestamp': '2025-10-03T12:03:13.935956+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '182077c2c1a56375'}
+[2025-10-03 14:03:13,936] INFO in security: Access: {'timestamp': '2025-10-03T12:03:13.936140+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '182077c2c1a56375'}
+[2025-10-03 14:03:13,936] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:13] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:03:14,257] INFO in security: Access: {'timestamp': '2025-10-03T12:03:14.253423+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '7e716fe430038d43'}
+[2025-10-03 14:03:14,257] INFO in security: Access: {'timestamp': '2025-10-03T12:03:14.257164+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '7e716fe430038d43'}
+[2025-10-03 14:03:14,257] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:03:14] "POST /api/auth/login HTTP/1.1" 200 -
+
+DEBUG: GET http://127.0.0.1:5001/health from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+DEBUG: GET http://127.0.0.1:5001/api from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '71'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"wrong","remember_me":false}
+Firebase initialized successfully
+DEBUG: GET http://127.0.0.1:5001/health from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+DEBUG: OPTIONS http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Origin': 'http://localhost:3000', 'Access-Control-Request-Method': 'POST', 'Access-Control-Request-Headers': 'Content-Type,Authorization'}
+DEBUG: OPTIONS http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Origin': 'http://localhost:4000', 'Access-Control-Request-Method': 'POST', 'Access-Control-Request-Headers': 'Content-Type,Authorization'}
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/register from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Content-Length': '122'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","first_name":"Demo","marketing_consent":false,"terms_accepted":true}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '79'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"wrongpassword","remember_me":false}
+Firebase initialized successfully
+DEBUG: GET http://127.0.0.1:5001/api/user/profile from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTQ5Mjk5MiwianRpIjoiNzBlMTVmY2ItZTZiMy00ZmZkLWExZTMtMzQ5YzdhNGQyN2NkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjE4OGE1YzE3LWFjZDAtNTYyOC1lYWM3LTE3OTAzYWRiZmY1YSIsIm5iZiI6MTc1OTQ5Mjk5MiwiZXhwIjoxNzU5NDk2NTkyfQ.kGu26lKwimgyZHZpMXZqslGUH9xJ97zmj0pfgnpUic8', 'Origin': 'http://localhost:3000'}
+DEBUG: GET http://127.0.0.1:5001/api/assessment/start from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTQ5Mjk5MiwianRpIjoiNzBlMTVmY2ItZTZiMy00ZmZkLWExZTMtMzQ5YzdhNGQyN2NkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjE4OGE1YzE3LWFjZDAtNTYyOC1lYWM3LTE3OTAzYWRiZmY1YSIsIm5iZiI6MTc1OTQ5Mjk5MiwiZXhwIjoxNzU5NDk2NTkyfQ.kGu26lKwimgyZHZpMXZqslGUH9xJ97zmj0pfgnpUic8', 'Origin': 'http://localhost:3000'}
+DEBUG: POST http://127.0.0.1:5001/api/assessment/submit from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTQ5Mjk5MiwianRpIjoiNzBlMTVmY2ItZTZiMy00ZmZkLWExZTMtMzQ5YzdhNGQyN2NkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjE4OGE1YzE3LWFjZDAtNTYyOC1lYWM3LTE3OTAzYWRiZmY1YSIsIm5iZiI6MTc1OTQ5Mjk5MiwiZXhwIjoxNzU5NDk2NTkyfQ.kGu26lKwimgyZHZpMXZqslGUH9xJ97zmj0pfgnpUic8', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '530'}
+DEBUG: Data: {
+        "professional_role": "Software Engineer",
+        "main_challenges": ["Time management", "Leadership presence"],
+        "skill_priorities": ["Communication", "Strategic thinking"],
+        
+DEBUG: GET http://127.0.0.1:5001/api/user/profile from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Origin': 'http://localhost:3000'}
+DEBUG: GET http://127.0.0.1:5001/health from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+DEBUG: GET http://127.0.0.1:5001/api from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15', 'Content-Length': '74'}
+DEBUG: Data: {"email":"demo@evergrow360.com","password":"Demo123!","remember_me":false}
+Firebase initialized successfully
+DEBUG: POST http://127.0.0.1:5001/api/auth/login from 127.0.0.1
+DEBUG: Headers: {'Host': '127.0.0.1:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*', 'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Content-Length': '71'}[2025-10-03 14:03:14,495] INFO in security: Access: {'timestamp': '2025-10-03T12:03:14.495012+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': False, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:14,495] INFO in security: Access: {'timestamp': '2025-10-03T12:03:14.495176+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:03:14,495] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 14:03:14] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+[2025-10-03 14:04:01,624] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:04:01] "GET /health HTTP/1.1" 200 -
+[2025-10-03 14:04:01,640] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:04:01] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:04:01,650] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:04:01] "OPTIONS /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:04:01,989] INFO in security: Access: {'timestamp': '2025-10-03T12:04:01.989673+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:04:01,990] INFO in security: Access: {'timestamp': '2025-10-03T12:04:01.990056+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:04:01,990] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:04:01] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:04:02,335] INFO in security: Access: {'timestamp': '2025-10-03T12:04:02.335768+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:04:02,336] INFO in security: Access: {'timestamp': '2025-10-03T12:04:02.336016+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:04:02,336] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:04:02] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:04:02,437] INFO in security: Access: {'timestamp': '2025-10-03T12:04:02.437265+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'register', 'resource': 'user_account', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:04:02,437] INFO in __init__: Response: 409
+127.0.0.1 - - [03/Oct/2025 14:04:02] "[31m[1mPOST /api/auth/register HTTP/1.1[0m" 409 -
+[2025-10-03 14:04:02,668] INFO in security: Access: {'timestamp': '2025-10-03T12:04:02.668378+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': False, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:04:02,668] INFO in security: Access: {'timestamp': '2025-10-03T12:04:02.668553+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:04:02,668] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 14:04:02] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -
+[2025-10-03 14:04:02,787] INFO in security: Access: {'timestamp': '2025-10-03T12:04:02.787241+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'get_user_profile', 'resource': 'user_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:04:02,787] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:04:02] "GET /api/user/profile HTTP/1.1" 200 -
+[2025-10-03 14:04:02,804] INFO in security: Access: {'timestamp': '2025-10-03T12:04:02.804937+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'start_assessment', 'resource': 'assessment_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:04:02,805] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:04:02] "GET /api/assessment/start HTTP/1.1" 200 -
+[2025-10-03 14:04:02,821] INFO in assessment: Assessment data validated successfully: 10 fields
+[2025-10-03 14:04:03,036] INFO in assessment: Assessment saved with ID: c4954b46-a762-47ee-a3d9-919d539f6c91
+[2025-10-03 14:04:03,037] INFO in assessment: Assessment processing completed successfully
+[2025-10-03 14:04:03,037] ERROR in assessment: AI analysis failed: 'AICoachingService' object has no attribute 'analyze_assessment_sync'
+[2025-10-03 14:04:03,136] INFO in security: Access: {'timestamp': '2025-10-03T12:04:03.136692+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'submit_assessment', 'resource': 'assessment_data', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:04:03,137] INFO in __init__: Response: 201
+127.0.0.1 - - [03/Oct/2025 14:04:03] "[35m[1mPOST /api/assessment/submit HTTP/1.1[0m" 201 -
+[2025-10-03 14:04:03,173] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 14:04:03] "[31m[1mGET /api/user/profile HTTP/1.1[0m" 401 -
+[2025-10-03 14:04:03,193] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:04:03] "GET /health HTTP/1.1" 200 -
+[2025-10-03 14:04:03,213] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:04:03] "GET /api HTTP/1.1" 200 -
+[2025-10-03 14:04:03,535] INFO in security: Access: {'timestamp': '2025-10-03T12:04:03.535230+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '6bc88d445710057e'}
+[2025-10-03 14:04:03,535] INFO in security: Access: {'timestamp': '2025-10-03T12:04:03.535386+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '6bc88d445710057e'}
+[2025-10-03 14:04:03,535] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:04:03] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:04:03,809] INFO in security: Access: {'timestamp': '2025-10-03T12:04:03.809882+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '182077c2c1a56375'}
+[2025-10-03 14:04:03,810] INFO in security: Access: {'timestamp': '2025-10-03T12:04:03.810043+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '182077c2c1a56375'}
+[2025-10-03 14:04:03,810] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:04:03] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:04:04,084] INFO in security: Access: {'timestamp': '2025-10-03T12:04:04.084599+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '7e716fe430038d43'}
+[2025-10-03 14:04:04,084] INFO in security: Access: {'timestamp': '2025-10-03T12:04:04.084778+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '7e716fe430038d43'}
+[2025-10-03 14:04:04,084] INFO in __init__: Response: 200
+127.0.0.1 - - [03/Oct/2025 14:04:04] "POST /api/auth/login HTTP/1.1" 200 -
+[2025-10-03 14:04:04,279] INFO in security: Access: {'timestamp': '2025-10-03T12:04:04.279902+00:00', 'user_hash': '32c36d730547685c', 'action': 'login', 'resource': 'user_session', 'success': False, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:04:04,280] INFO in security: Access: {'timestamp': '2025-10-03T12:04:04.280075+00:00', 'user_hash': '24aa59c0f812e64e', 'action': 'login', 'resource': 'user_session', 'success': True, 'ip_hash': 'b865ea5eaa2bd7c8', 'user_agent_hash': '0c9f879f0011c860'}
+[2025-10-03 14:04:04,280] INFO in __init__: Response: 401
+127.0.0.1 - - [03/Oct/2025 14:04:04] "[31m[1mPOST /api/auth/login HTTP/1.1[0m" 401 -

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Evergrow360 Onboarding</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+    <div class="onboarding-container">
+        <!-- Progress Header -->
+        <header class="onboarding-header">
+            <div class="container">
+                <div class="flex-between">
+                    <div class="logo">
+                        <h2>Evergrow360</h2>
+                    </div>
+                    <div class="progress-indicator">
+                        <span class="progress-text">Step 1 of 4</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="onboarding-main">
+            <div class="container-sm">
+                <div class="welcome-card">
+                    <div class="welcome-icon">
+                        🚀
+                    </div>
+                    
+                    <h1 class="welcome-title">Welcome to Your Growth Journey!</h1>
+                    
+                    <p class="welcome-description">
+                        We're excited to help you transform feedback into measurable growth. 
+                        Our AI-powered platform will create a personalized coaching experience 
+                        tailored to your unique goals and challenges.
+                    </p>
+
+                    <div class="welcome-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">🎯</div>
+                            <div class="feature-content">
+                                <h3>Personalized Assessment</h3>
+                                <p>AI-driven evaluation of your business goals and challenges</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">📈</div>
+                            <div class="feature-content">
+                                <h3>Custom Growth Plan</h3>
+                                <p>Tailored coaching path designed specifically for your needs</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">👥</div>
+                            <div class="feature-content">
+                                <h3>Expert Coaches</h3>
+                                <p>Connect with experienced professionals in your field</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">📊</div>
+                            <div class="feature-content">
+                                <h3>Progress Tracking</h3>
+                                <p>Real-time insights and analytics on your development</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="welcome-actions">
+                        <button class="btn btn-primary btn-lg btn-block" onclick="startOnboarding()">
+                            Start My Assessment
+                        </button>
+                        
+                        <p class="welcome-note">
+                            This will take approximately 5-10 minutes to complete
+                        </p>
+                    </div>
+
+                    <div class="welcome-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">10,000+</span>
+                            <span class="stat-label">Professionals Helped</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">95%</span>
+                            <span class="stat-label">See Measurable Growth</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">6 Months</span>
+                            <span class="stat-label">Average Time to Goal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Skip Option -->
+        <footer class="onboarding-footer">
+            <div class="container text-center">
+                <p>
+                    Want to explore first? 
+                    <a href="../dashboard/index.html" class="link">Skip onboarding and go to dashboard</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../shared/utils.js"></script>
+    <script>
+        function startOnboarding() {
+            // Store onboarding start time
+            Evergrow360.Utils.setStorage('onboardingStart', new Date().toISOString());
+            
+            // Initialize onboarding data
+            const onboardingData = {
+                step: 1,
+                startTime: new Date().toISOString(),
+                responses: {},
+                progress: 25
+            };
+            Evergrow360.Utils.setStorage('onboardingData', onboardingData);
+            
+            // Navigate to assessment
+            window.location.href = '/assessment/form';
+        }
+
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for JWT tokens set by the API
+            const accessToken = localStorage.getItem('access_token');
+            const refreshToken = localStorage.getItem('refresh_token');
+            
+            if (!accessToken || !refreshToken) {
+                // Redirect to login if no tokens
+                window.location.href = '../auth/login.html';
+                return;
+            }
+
+            // Display personalized welcome message
+            // For now, use a generic welcome message
+            // TODO: Add user profile data to personalize welcome message
+            const titleElement = document.querySelector('.welcome-title');
+            titleElement.textContent = `Welcome to Your Growth Journey!`;
+
+            // Add smooth animations
+            setTimeout(() => {
+                document.querySelectorAll('.feature-item').forEach((item, index) => {
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, index * 200);
+                });
+            }, 500);
+        });
+    </script>
+
+    <style>
+        .onboarding-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-medium) 50%, var(--slate-dark) 100%);
+        }
+
+        .onboarding-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid rgba(136, 151, 168, 0.1);
+        }
+
+        .logo h2 {
+            color: var(--gold-primary);
+            margin: 0;
+        }
+
+        .progress-indicator {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .progress-text {
+            font-size: 0.875rem;
+            color: var(--slate-medium);
+            white-space: nowrap;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 6px;
+            background: rgba(136, 151, 168, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold-primary), var(--gold-light));
+            transition: width 0.5s ease;
+        }
+
+        .onboarding-main {
+            padding: var(--spacing-xl) 0;
+            min-height: calc(100vh - 200px);
+            display: flex;
+            align-items: center;
+        }
+
+        .welcome-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .welcome-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, var(--navy-deep), var(--gold-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .welcome-description {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            color: var(--slate-medium);
+            margin-bottom: var(--spacing-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .welcome-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+            text-align: left;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .feature-content h3 {
+            font-size: 1.125rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--navy-deep);
+        }
+
+        .feature-content p {
+            font-size: 0.875rem;
+            color: var(--slate-medium);
+            margin: 0;
+        }
+
+        .welcome-actions {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .welcome-note {
+            font-size: 0.875rem;
+            color: var(--slate-light);
+            margin-top: var(--spacing-sm);
+        }
+
+        .welcome-stats {
+            display: flex;
+            justify-content: space-around;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(136, 151, 168, 0.2);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gold-primary);
+            font-family: var(--font-display);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--slate-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .onboarding-footer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-md) 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .onboarding-footer .link {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        .onboarding-footer .link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .progress-indicator {
+                flex-direction: column;
+                align-items: flex-end;
+                gap: var(--spacing-xs);
+            }
+
+            .progress-bar {
+                width: 150px;
+            }
+
+            .welcome-title {
+                font-size: 2rem;
+            }
+
+            .welcome-features {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-stats {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .feature-item {
+                text-align: center;
+                flex-direction: column;
+            }
+        }
+    </style>
+</body>
+</html>

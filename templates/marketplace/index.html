@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block title %}Marketplace - Evergrow360{% endblock %}
+
+{% block content %}
+<!-- Search and Filters Header -->
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">🌟 Expert Coaching Marketplace</h2>
+        <p style="color: var(--gray-600); margin-top: 0.5rem;">
+            Find the perfect coach for your leadership development journey
+        </p>
+    </div>
+    
+    <form method="GET" action="/marketplace" style="display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 1rem; align-items: end;">
+        <div class="form-group" style="margin-bottom: 0;">
+            <label for="search" class="form-label">Search Coaches</label>
+            <input type="text" id="search" name="search" class="form-input" 
+                   placeholder="Search by name, specialty, or expertise..." 
+                   value="{{ search_query }}">
+        </div>
+        
+        <div class="form-group" style="margin-bottom: 0;">
+            <label for="specialty" class="form-label">Specialty</label>
+            <select id="specialty" name="specialty" class="form-select">
+                <option value="">All Specialties</option>
+                <option value="C-Suite Leadership" {{ 'selected' if specialty_filter == 'C-Suite Leadership' }}>C-Suite Leadership</option>
+                <option value="Technical Leadership" {{ 'selected' if specialty_filter == 'Technical Leadership' }}>Technical Leadership</option>
+                <option value="Executive Communication" {{ 'selected' if specialty_filter == 'Executive Communication' }}>Executive Communication</option>
+                <option value="Strategic Thinking" {{ 'selected' if specialty_filter == 'Strategic Thinking' }}>Strategic Thinking</option>
+                <option value="Team Building" {{ 'selected' if specialty_filter == 'Team Building' }}>Team Building</option>
+            </select>
+        </div>
+        
+        <div class="form-group" style="margin-bottom: 0;">
+            <label for="price" class="form-label">Price Range</label>
+            <select id="price" name="price" class="form-select">
+                <option value="">All Prices</option>
+                <option value="low" {{ 'selected' if price_filter == 'low' }}>Under $300/hour</option>
+                <option value="high" {{ 'selected' if price_filter == 'high' }}>$300+ /hour</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+
+<!-- Coaches Grid -->
+<div class="grid grid-2">
+    {% for coach in coaches %}
+    <div class="card" style="transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;" 
+         onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.1)';" 
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.05)';"
+         onclick="window.location.href='/coach/{{ coach.id }}'">
+        
+        <!-- Coach Header -->
+        <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--navy-deep), var(--navy-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.5rem; font-weight: bold;">
+                {{ coach.name.split()[0][0] }}{{ coach.name.split()[1][0] if coach.name.split()|length > 1 else '' }}
+            </div>
+            
+            <div style="flex: 1;">
+                <h3 style="color: var(--navy-deep); margin-bottom: 0.25rem; font-size: 1.25rem;">{{ coach.name }}</h3>
+                <p style="color: var(--gold-primary); font-weight: 500; margin-bottom: 0.5rem;">{{ coach.title }}</p>
+                <div style="display: flex; align-items: center; gap: 1rem; font-size: 0.875rem; color: var(--gray-600);">
+                    <span>⭐ {{ coach.rating }} ({{ coach.review_count }} reviews)</span>
+                    <span>💼 {{ coach.experience_years }} years</span>
+                </div>
+            </div>
+            
+            <div style="text-align: right;">
+                <div style="font-size: 1.25rem; font-weight: bold; color: var(--navy-deep);">${{ coach.price_per_hour }}</div>
+                <div style="font-size: 0.875rem; color: var(--gray-600);">per hour</div>
+            </div>
+        </div>
+        
+        <!-- Specialties -->
+        <div style="margin-bottom: 1.5rem;">
+            <h4 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--navy-deep);">Specialties:</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                {% for specialty in coach.specialties %}
+                <span style="background: var(--gold-primary); color: var(--navy-deep); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 500;">
+                    {{ specialty }}
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Bio -->
+        <p style="color: var(--gray-600); margin-bottom: 1.5rem; font-size: 0.875rem; line-height: 1.5;">
+            {{ coach.bio }}
+        </p>
+        
+        <!-- Availability & Actions -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid #E5E7EB;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="width: 8px; height: 8px; background: var(--success); border-radius: 50%;"></span>
+                <span style="font-size: 0.875rem; color: var(--success); font-weight: 500;">{{ coach.availability }}</span>
+            </div>
+            
+            <div style="display: flex; gap: 0.5rem;">
+                <a href="/coach/{{ coach.id }}" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.875rem; text-decoration: none;">
+                    View Profile
+                </a>
+                <a href="/book/{{ coach.id }}" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem; text-decoration: none;">
+                    Book Session
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+    {% if not coaches %}
+    <div class="card" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+        <div style="font-size: 4rem; margin-bottom: 1rem; color: var(--gray-400);">🔍</div>
+        <h3 style="color: var(--navy-deep); margin-bottom: 1rem;">No coaches found</h3>
+        <p style="color: var(--gray-600); margin-bottom: 2rem;">
+            Try adjusting your search criteria or browse all available coaches.
+        </p>
+        <a href="/marketplace" class="btn btn-primary">View All Coaches</a>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Why Choose Our Coaches -->
+<div class="card" style="background: var(--gray-100); border: 1px solid #E5E7EB;">
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <h3 style="color: var(--navy-deep); margin-bottom: 1rem;">Why Choose Evergrow360 Coaches?</h3>
+        <p style="color: var(--gray-600);">Our coaches are carefully selected and vetted to ensure you get the highest quality leadership development experience.</p>
+    </div>
+    
+    <div class="grid grid-3">
+        <div style="text-align: center;">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎓</div>
+            <h4 style="color: var(--navy-deep); margin-bottom: 0.5rem;">Proven Expertise</h4>
+            <p style="color: var(--gray-600); font-size: 0.875rem;">All coaches have 10+ years of executive experience and certified coaching credentials.</p>
+        </div>
+        
+        <div style="text-align: center;">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎯</div>
+            <h4 style="color: var(--navy-deep); margin-bottom: 0.5rem;">Results-Driven</h4>
+            <p style="color: var(--gray-600); font-size: 0.875rem;">95% of clients report measurable improvement in leadership effectiveness within 90 days.</p>
+        </div>
+        
+        <div style="text-align: center;">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🤝</div>
+            <h4 style="color: var(--navy-deep); margin-bottom: 0.5rem;">Perfect Matching</h4>
+            <p style="color: var(--gray-600); font-size: 0.875rem;">Our AI matches you with coaches based on your industry, role, and specific development needs.</p>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="card" style="background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-light) 100%); color: var(--white); text-align: center;">
+    <h3 style="color: var(--gold-primary); margin-bottom: 1rem;">Ready to Start Your Coaching Journey?</h3>
+    <p style="opacity: 0.9; margin-bottom: 2rem; font-size: 1.1rem;">
+        Take the first step towards transforming your leadership effectiveness with personalized, expert guidance.
+    </p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/register" class="btn btn-primary">Start Free Assessment</a>
+        <a href="/dashboard" class="btn btn-secondary">View My Dashboard</a>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add search functionality
+    const searchForm = document.querySelector('form[action="/marketplace"]');
+    const searchInput = document.getElementById('search');
+    
+    // Auto-submit form on specialty or price change
+    document.getElementById('specialty').addEventListener('change', function() {
+        searchForm.submit();
+    });
+    
+    document.getElementById('price').addEventListener('change', function() {
+        searchForm.submit();
+    });
+    
+    // Real-time search with debouncing
+    let searchTimeout;
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            // In a real app, this would make an AJAX request
+            // For demo, we'll just highlight the search term
+            highlightSearchTerms();
+        }, 300);
+    });
+    
+    function highlightSearchTerms() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        if (searchTerm.length < 2) return;
+        
+        const coachCards = document.querySelectorAll('.card h3, .card p');
+        coachCards.forEach(element => {
+            const text = element.textContent;
+            if (text.toLowerCase().includes(searchTerm)) {
+                element.style.background = 'rgba(212, 175, 55, 0.1)';
+                element.style.transition = 'background 0.3s ease';
+                
+                setTimeout(() => {
+                    element.style.background = 'transparent';
+                }, 2000);
+            }
+        });
+    }
+    
+    // Add loading animation for coach cards
+    const coachCards = document.querySelectorAll('.grid-2 .card');
+    coachCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        
+        setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+    
+    // Add click tracking for analytics
+    coachCards.forEach(card => {
+        card.addEventListener('click', function() {
+            // In a real app, this would track coach profile views
+            console.log('Coach card clicked:', this.querySelector('h3').textContent);
+        });
+    });
+});
+</script>
+{% endblock %}

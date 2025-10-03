@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Evergrow360 - AI-Powered Executive Coaching Platform{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="card" style="background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-light) 100%); color: var(--white); text-align: center;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem; color: var(--gold-primary);">Transform Your Leadership</h1>
+    <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9;">AI-powered coaching platform designed for executives and leaders who demand results</p>
+    <a href="/register" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Start Your Journey</a>
+</div>
+
+<!-- Platform Stats -->
+<div class="stats">
+    <div class="stat">
+        <div class="stat-value">{{ stats.total_coaches }}+</div>
+        <div class="stat-label">Expert Coaches</div>
+    </div>
+    <div class="stat">
+        <div class="stat-value">{{ stats.successful_sessions }}+</div>
+        <div class="stat-label">Successful Sessions</div>
+    </div>
+    <div class="stat">
+        <div class="stat-value">{{ stats.average_rating }}/5</div>
+        <div class="stat-label">Average Rating</div>
+    </div>
+    <div class="stat">
+        <div class="stat-value">{{ stats.user_satisfaction }}%</div>
+        <div class="stat-label">User Satisfaction</div>
+    </div>
+</div>
+
+<!-- Core Features -->
+<div class="grid grid-3">
+    <div class="card">
+        <h3 style="color: var(--navy-deep); margin-bottom: 1rem;">🧠 AI-Powered Assessment</h3>
+        <p>Advanced AI analyzes your professional challenges and creates personalized development plans tailored to your specific leadership goals and context.</p>
+    </div>
+    
+    <div class="card">
+        <h3 style="color: var(--navy-deep); margin-bottom: 1rem;">👥 Expert Coaches</h3>
+        <p>Connect with world-class executive coaches who have worked with Fortune 500 leaders and understand the unique challenges you face.</p>
+    </div>
+    
+    <div class="card">
+        <h3 style="color: var(--navy-deep); margin-bottom: 1rem;">📊 Progress Tracking</h3>
+        <p>Real-time analytics and insights help you measure improvement, track goal achievement, and optimize your leadership development journey.</p>
+    </div>
+    
+    <div class="card">
+        <h3 style="color: var(--navy-deep); margin-bottom: 1rem;">🎯 Personalized Plans</h3>
+        <p>Custom coaching programs designed around your role, industry, and specific objectives with clear milestones and actionable steps.</p>
+    </div>
+    
+    <div class="card">
+        <h3 style="color: var(--navy-deep); margin-bottom: 1rem;">🔒 Privacy First</h3>
+        <p>Enterprise-grade security with complete data anonymization ensures your sensitive information remains protected at all times.</p>
+    </div>
+    
+    <div class="card">
+        <h3 style="color: var(--navy-deep); margin-bottom: 1rem;">⚡ Immediate Impact</h3>
+        <p>See measurable improvements in leadership effectiveness within weeks through our proven methodology and expert guidance.</p>
+    </div>
+</div>
+
+<!-- How It Works -->
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">How Evergrow360 Works</h2>
+    </div>
+    
+    <div class="grid grid-2">
+        <div>
+            <h4 style="color: var(--gold-primary); margin-bottom: 0.5rem;">1. AI Assessment</h4>
+            <p>Complete our comprehensive 8-question assessment that analyzes your professional role, challenges, goals, and learning preferences using advanced AI.</p>
+        </div>
+        
+        <div>
+            <h4 style="color: var(--gold-primary); margin-bottom: 0.5rem;">2. Personalized Plan</h4>
+            <p>Receive a custom coaching plan with specific phases, activities, and success metrics designed for your unique situation and objectives.</p>
+        </div>
+        
+        <div>
+            <h4 style="color: var(--gold-primary); margin-bottom: 0.5rem;">3. Expert Coaching</h4>
+            <p>Connect with carefully selected coaches who match your industry, role, and development needs for one-on-one and group sessions.</p>
+        </div>
+        
+        <div>
+            <h4 style="color: var(--gold-primary); margin-bottom: 0.5rem;">4. Track Progress</h4>
+            <p>Monitor your development through detailed analytics, milestone tracking, and continuous feedback to ensure you're achieving your goals.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="card" style="text-align: center; background: var(--gray-100); border: 2px solid var(--gold-primary);">
+    <h2 style="color: var(--navy-deep); margin-bottom: 1rem;">Ready to Transform Your Leadership?</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--gray-800);">
+        Join thousands of executives who have accelerated their leadership development with Evergrow360's AI-powered coaching platform.
+    </p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/register" class="btn btn-primary">Start Free Assessment</a>
+        <a href="/marketplace" class="btn btn-secondary">Explore Coaches</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace - Evergrow360</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h2>Evergrow360</h2>
+                </div>
+                
+                <nav class="main-nav">
+                    <a href="../dashboard/index.html" class="nav-link">Dashboard</a>
+                    <a href="#" class="nav-link active">Marketplace</a>
+                    <a href="../sessions/index.html" class="nav-link">My Sessions</a>
+                    <a href="../profile/index.html" class="nav-link">Profile</a>
+                </nav>
+
+                <div class="header-actions">
+                    <div class="user-menu">
+                        <button class="user-avatar" onclick="toggleUserMenu()">
+                            <span id="userInitials">JD</span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="../profile/index.html">Profile Settings</a>
+                            <a href="../payments/billing.html">Billing</a>
+                            <a href="../feedback/support.html">Support</a>
+                            <hr>
+                            <a href="#" onclick="logout()">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="marketplace-main">
+        <div class="container">
+            <!-- Page Header -->
+            <section class="marketplace-header">
+                <div class="header-content">
+                    <div class="header-text">
+                        <h1>Coach & Course Marketplace</h1>
+                        <p>Discover expert coaches and specialized courses tailored to your growth goals</p>
+                    </div>
+                    <div class="header-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Expert Coaches</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">300+</span>
+                            <span class="stat-label">Courses Available</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">95%</span>
+                            <span class="stat-label">Satisfaction Rate</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filters and Search -->
+            <section class="marketplace-filters">
+                <div class="filters-container">
+                    <div class="search-section">
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            class="search-input" 
+                            placeholder="Search coaches, courses, or skills..."
+                            onkeyup="handleSearch()"
+                        >
+                    </div>
+                    
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" onclick="switchFilter('all')">All</button>
+                        <button class="filter-tab" onclick="switchFilter('coaches')">Coaches</button>
+                        <button class="filter-tab" onclick="switchFilter('courses')">Courses</button>
+                        <button class="filter-tab" onclick="switchFilter('workshops')">Workshops</button>
+                    </div>
+
+                    <div class="filter-options">
+                        <select id="categoryFilter" class="filter-select" onchange="applyFilters()">
+                            <option value="">All Categories</option>
+                            <option value="leadership">Leadership</option>
+                            <option value="communication">Communication</option>
+                            <option value="strategy">Strategy</option>
+                            <option value="management">Management</option>
+                            <option value="personal-development">Personal Development</option>
+                        </select>
+
+                        <select id="priceFilter" class="filter-select" onchange="applyFilters()">
+                            <option value="">All Prices</option>
+                            <option value="0-100">€0 - €100</option>
+                            <option value="100-300">€100 - €300</option>
+                            <option value="300-500">€300 - €500</option>
+                            <option value="500+">€500+</option>
+                        </select>
+
+                        <select id="durationFilter" class="filter-select" onchange="applyFilters()">
+                            <option value="">All Durations</option>
+                            <option value="30">30 minutes</option>
+                            <option value="60">1 hour</option>
+                            <option value="90">1.5 hours</option>
+                            <option value="120">2+ hours</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Section -->
+            <section class="featured-section">
+                <h2>Featured This Week</h2>
+                <div class="featured-grid" id="featuredGrid">
+                    <!-- Featured items will be loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Main Marketplace Grid -->
+            <section class="marketplace-grid-section">
+                <div class="section-header">
+                    <h2>All Offerings</h2>
+                    <div class="results-info">
+                        <span id="resultsCount">Showing 24 results</span>
+                        <select id="sortFilter" class="sort-select" onchange="applySorting()">
+                            <option value="recommended">Recommended</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                            <option value="newest">Newest</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="marketplace-grid" id="marketplaceGrid">
+                    <!-- Marketplace items will be loaded dynamically -->
+                </div>
+
+                <div class="load-more-section">
+                    <button class="btn btn-secondary" id="loadMoreBtn" onclick="loadMoreItems()">
+                        Load More Results
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Item Detail Modal -->
+    <div id="itemModal" class="modal-overlay">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3 id="modalTitle">Coach Details</h3>
+                <button class="modal-close" onclick="Evergrow360.Utils.closeModal('#itemModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be loaded dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="Evergrow360.Utils.closeModal('#itemModal')">Close</button>
+                <button class="btn btn-primary" id="modalActionBtn" onclick="bookItem()">Book Session</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared/utils.js"></script>
+    <script>
+        // Sample marketplace data
+        const marketplaceData = {
+            coaches: [
+                {
+                    id: 1,
+                    type: 'coach',
+                    name: 'Sarah Williams',
+                    title: 'Leadership Excellence Coach',
+                    category: 'leadership',
+                    rating: 4.9,
+                    reviews: 127,
+                    price: 250,
+                    duration: 60,
+                    image: 'https://via.placeholder.com/300x200/4A90E2/FFFFFF?text=SW',
+                    description: 'Experienced executive coach with 15+ years in Fortune 500 leadership development.',
+                    specialties: ['Executive Coaching', 'Team Leadership', 'Strategic Planning'],
+                    availability: 'Available this week',
+                    featured: true
+                },
+                {
+                    id: 2,
+                    type: 'coach',
+                    name: 'Michael Chen',
+                    title: 'Communication & Presentation Expert',
+                    category: 'communication',
+                    rating: 4.8,
+                    reviews: 89,
+                    price: 200,
+                    duration: 90,
+                    image: 'https://via.placeholder.com/300x200/27AE60/FFFFFF?text=MC',
+                    description: 'Master trainer in public speaking and interpersonal communication skills.',
+                    specialties: ['Public Speaking', 'Team Communication', 'Conflict Resolution'],
+                    availability: 'Available next week'
+                },
+                {
+                    id: 3,
+                    type: 'coach',
+                    name: 'Elena Rodriguez',
+                    title: 'Strategic Business Coach',
+                    category: 'strategy',
+                    rating: 4.9,
+                    reviews: 156,
+                    price: 300,
+                    duration: 120,
+                    image: 'https://via.placeholder.com/300x200/E74C3C/FFFFFF?text=ER',
+                    description: 'Former McKinsey consultant specializing in business strategy and growth.',
+                    specialties: ['Business Strategy', 'Growth Planning', 'Market Analysis'],
+                    availability: 'Limited availability',
+                    featured: true
+                }
+            ],
+            courses: [
+                {
+                    id: 4,
+                    type: 'course',
+                    name: 'Complete Leadership Mastery',
+                    instructor: 'Leadership Institute',
+                    category: 'leadership',
+                    rating: 4.7,
+                    reviews: 234,
+                    price: 149,
+                    duration: 480,
+                    image: 'https://via.placeholder.com/300x200/F39C12/FFFFFF?text=CLM',
+                    description: '8-hour comprehensive course covering all aspects of modern leadership.',
+                    modules: ['Leadership Fundamentals', 'Team Dynamics', 'Decision Making', 'Change Management'],
+                    level: 'Intermediate',
+                    featured: true
+                },
+                {
+                    id: 5,
+                    type: 'course',
+                    name: 'Effective Communication Skills',
+                    instructor: 'Communication Academy',
+                    category: 'communication',
+                    rating: 4.6,
+                    reviews: 178,
+                    price: 99,
+                    duration: 240,
+                    image: 'https://via.placeholder.com/300x200/9B59B6/FFFFFF?text=ECS',
+                    description: '4-hour intensive course on professional communication techniques.',
+                    modules: ['Verbal Communication', 'Non-verbal Cues', 'Written Communication', 'Active Listening'],
+                    level: 'Beginner'
+                }
+            ],
+            workshops: [
+                {
+                    id: 6,
+                    type: 'workshop',
+                    name: 'Team Building Workshop',
+                    facilitator: 'Team Dynamics Group',
+                    category: 'management',
+                    rating: 4.8,
+                    reviews: 92,
+                    price: 450,
+                    duration: 480,
+                    image: 'https://via.placeholder.com/300x200/2ECC71/FFFFFF?text=TBW',
+                    description: 'Full-day interactive workshop for team building and collaboration.',
+                    participants: '6-12 people',
+                    includes: ['Team Assessment', 'Interactive Exercises', 'Action Plan', 'Follow-up Session'],
+                    availability: 'Group booking required'
+                }
+            ]
+        };
+
+        let currentFilter = 'all';
+        let filteredData = [];
+        let displayedItems = 12;
+
+        // Initialize marketplace
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMarketplace();
+            loadFeaturedItems();
+            loadMarketplaceItems();
+        });
+
+        function initializeMarketplace() {
+            // Check authentication
+            const session = Evergrow360.Utils.getStorage('userSession');
+            if (!session) {
+                window.location.href = '../auth/login.html';
+                return;
+            }
+
+            // Set user initials
+            const userData = Evergrow360.Utils.getStorage('userData') || {};
+            const tempUserData = Evergrow360.Utils.getStorage('tempUserData') || {};
+            const name = userData.name || tempUserData.name || session.email.split('@')[0];
+            const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+            document.getElementById('userInitials').textContent = initials;
+
+            // Combine all data
+            filteredData = [...marketplaceData.coaches, ...marketplaceData.courses, ...marketplaceData.workshops];
+        }
+
+        function loadFeaturedItems() {
+            const featuredItems = filteredData.filter(item => item.featured);
+            const container = document.getElementById('featuredGrid');
+            
+            container.innerHTML = featuredItems.map(item => createItemCard(item, true)).join('');
+        }
+
+        function loadMarketplaceItems() {
+            const container = document.getElementById('marketplaceGrid');
+            const itemsToShow = filteredData.slice(0, displayedItems);
+            
+            container.innerHTML = itemsToShow.map(item => createItemCard(item)).join('');
+            
+            updateResultsCount();
+            updateLoadMoreButton();
+        }
+
+        function createItemCard(item, isFeatured = false) {
+            const typeIcon = {
+                coach: '👨‍💼',
+                course: '📚',
+                workshop: '👥'
+            };
+
+            const priceDisplay = item.type === 'coach' ? 
+                `€${item.price}/session` : 
+                `€${item.price}`;
+
+            const durationDisplay = item.duration >= 60 ? 
+                `${Math.floor(item.duration / 60)}h ${item.duration % 60 ? item.duration % 60 + 'm' : ''}`.trim() :
+                `${item.duration}m`;
+
+            return `
+                <div class="marketplace-card ${isFeatured ? 'featured' : ''}" onclick="showItemDetails(${item.id})">
+                    <div class="card-image">
+                        <img src="${item.image}" alt="${item.name}" loading="lazy">
+                        <div class="card-type">${typeIcon[item.type]} ${item.type.charAt(0).toUpperCase() + item.type.slice(1)}</div>
+                        ${item.featured ? '<div class="featured-badge">Featured</div>' : ''}
+                    </div>
+                    
+                    <div class="card-content">
+                        <h3 class="card-title">${item.name}</h3>
+                        <p class="card-instructor">${item.instructor || item.facilitator || 'with ' + item.name}</p>
+                        
+                        <div class="card-rating">
+                            <div class="stars">
+                                ${'★'.repeat(Math.floor(item.rating))}${'☆'.repeat(5 - Math.floor(item.rating))}
+                            </div>
+                            <span class="rating-text">${item.rating} (${item.reviews} reviews)</span>
+                        </div>
+                        
+                        <p class="card-description">${item.description}</p>
+                        
+                        <div class="card-meta">
+                            <span class="card-duration">${durationDisplay}</span>
+                            <span class="card-category">${item.category}</span>
+                        </div>
+                        
+                        <div class="card-footer">
+                            <div class="card-price">${priceDisplay}</div>
+                            <div class="card-availability">${item.availability || 'Available'}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showItemDetails(itemId) {
+            const item = filteredData.find(i => i.id === itemId);
+            if (!item) return;
+
+            document.getElementById('modalTitle').textContent = `${item.name} Details`;
+            
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = createItemDetails(item);
+            
+            const actionBtn = document.getElementById('modalActionBtn');
+            actionBtn.textContent = item.type === 'coach' ? 'Book Session' : 'Enroll Now';
+            actionBtn.onclick = () => bookItem(item);
+            
+            Evergrow360.Utils.openModal('#itemModal');
+        }
+
+        function createItemDetails(item) {
+            const typeSpecificContent = {
+                coach: `
+                    <div class="detail-section">
+                        <h4>Specialties</h4>
+                        <div class="specialties-list">
+                            ${item.specialties.map(spec => `<span class="specialty-tag">${spec}</span>`).join('')}
+                        </div>
+                    </div>
+                `,
+                course: `
+                    <div class="detail-section">
+                        <h4>Course Modules</h4>
+                        <ul class="modules-list">
+                            ${item.modules.map(module => `<li>${module}</li>`).join('')}
+                        </ul>
+                        <p><strong>Level:</strong> ${item.level}</p>
+                    </div>
+                `,
+                workshop: `
+                    <div class="detail-section">
+                        <h4>What's Included</h4>
+                        <ul class="includes-list">
+                            ${item.includes.map(include => `<li>${include}</li>`).join('')}
+                        </ul>
+                        <p><strong>Participants:</strong> ${item.participants}</p>
+                    </div>
+                `
+            };
+
+            return `
+                <div class="item-details">
+                    <div class="details-header">
+                        <img src="${item.image}" alt="${item.name}" class="details-image">
+                        <div class="details-info">
+                            <h3>${item.name}</h3>
+                            <p class="details-instructor">${item.instructor || item.facilitator || item.title}</p>
+                            <div class="details-rating">
+                                <div class="stars">
+                                    ${'★'.repeat(Math.floor(item.rating))}${'☆'.repeat(5 - Math.floor(item.rating))}
+                                </div>
+                                <span>${item.rating} (${item.reviews} reviews)</span>
+                            </div>
+                            <div class="details-price">€${item.price}${item.type === 'coach' ? '/session' : ''}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="details-description">
+                        <h4>Description</h4>
+                        <p>${item.description}</p>
+                    </div>
+                    
+                    ${typeSpecificContent[item.type]}
+                    
+                    <div class="detail-section">
+                        <h4>Additional Information</h4>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Duration:</span>
+                                <span class="info-value">${item.duration >= 60 ? 
+                                    `${Math.floor(item.duration / 60)}h ${item.duration % 60 ? item.duration % 60 + 'm' : ''}`.trim() :
+                                    `${item.duration}m`}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Category:</span>
+                                <span class="info-value">${item.category}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Availability:</span>
+                                <span class="info-value">${item.availability || 'Available'}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function bookItem(item) {
+            // Store selected item for booking
+            Evergrow360.Utils.setStorage('selectedItem', item);
+            
+            // Navigate to booking page
+            window.location.href = `../booking/index.html?type=${item.type}&id=${item.id}`;
+        }
+
+        function switchFilter(filterType) {
+            currentFilter = filterType;
+            
+            // Update active tab
+            document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            applyFilters();
+        }
+
+        function applyFilters() {
+            let filtered = [...marketplaceData.coaches, ...marketplaceData.courses, ...marketplaceData.workshops];
+            
+            // Apply type filter
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(item => item.type === currentFilter);
+            }
+            
+            // Apply category filter
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            if (categoryFilter) {
+                filtered = filtered.filter(item => item.category === categoryFilter);
+            }
+            
+            // Apply price filter
+            const priceFilter = document.getElementById('priceFilter').value;
+            if (priceFilter) {
+                const [min, max] = priceFilter.split('-').map(p => p.replace('+', ''));
+                filtered = filtered.filter(item => {
+                    if (priceFilter === '500+') return item.price >= 500;
+                    return item.price >= parseInt(min) && item.price <= parseInt(max);
+                });
+            }
+            
+            // Apply duration filter
+            const durationFilter = document.getElementById('durationFilter').value;
+            if (durationFilter) {
+                const duration = parseInt(durationFilter);
+                if (duration === 120) {
+                    filtered = filtered.filter(item => item.duration >= 120);
+                } else {
+                    filtered = filtered.filter(item => item.duration === duration);
+                }
+            }
+            
+            filteredData = filtered;
+            displayedItems = 12;
+            loadMarketplaceItems();
+        }
+
+        function handleSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (!searchTerm) {
+                applyFilters();
+                return;
+            }
+            
+            filteredData = filteredData.filter(item => 
+                item.name.toLowerCase().includes(searchTerm) ||
+                item.description.toLowerCase().includes(searchTerm) ||
+                item.category.toLowerCase().includes(searchTerm) ||
+                (item.specialties && item.specialties.some(spec => spec.toLowerCase().includes(searchTerm)))
+            );
+            
+            displayedItems = 12;
+            loadMarketplaceItems();
+        }
+
+        function applySorting() {
+            const sortBy = document.getElementById('sortFilter').value;
+            
+            switch (sortBy) {
+                case 'price-low':
+                    filteredData.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filteredData.sort((a, b) => b.price - a.price);
+                    break;
+                case 'rating':
+                    filteredData.sort((a, b) => b.rating - a.rating);
+                    break;
+                case 'newest':
+                    filteredData.sort((a, b) => b.id - a.id);
+                    break;
+                default:
+                    // Keep original order for 'recommended'
+                    break;
+            }
+            
+            loadMarketplaceItems();
+        }
+
+        function loadMoreItems() {
+            displayedItems += 12;
+            loadMarketplaceItems();
+        }
+
+        function updateResultsCount() {
+            const count = Math.min(displayedItems, filteredData.length);
+            document.getElementById('resultsCount').textContent = `Showing ${count} of ${filteredData.length} results`;
+        }
+
+        function updateLoadMoreButton() {
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (displayedItems >= filteredData.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'block';
+            }
+        }
+
+        function toggleUserMenu() {
+            document.getElementById('userDropdown').classList.toggle('active');
+        }
+
+        function logout() {
+            Evergrow360.Utils.removeStorage('userSession');
+            window.location.href = '../auth/login.html';
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const userMenu = document.querySelector('.user-menu');
+            if (!userMenu.contains(e.target)) {
+                document.getElementById('userDropdown').classList.remove('active');
+            }
+        });
+    </script>
+
+    <style>
+        /* Include dashboard header styles */
+        .dashboard-header {
+            background: var(--white);
+            border-bottom: 1px solid rgba(136, 151, 168, 0.1);
+            padding: var(--spacing-md) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo h2 {
+            color: var(--gold-primary);
+            margin: 0;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--slate-medium);
+            font-weight: 500;
+            padding: var(--spacing-xs) 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--gold-primary);
+            border-bottom-color: var(--gold-primary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gold-primary);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            border: 1px solid rgba(136, 151, 168, 0.1);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .user-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .user-dropdown a {
+            display: block;
+            padding: var(--spacing-sm) var(--spacing-md);
+            text-decoration: none;
+            color: var(--slate-dark);
+            font-size: 0.875rem;
+            transition: background 0.3s ease;
+        }
+
+        .user-dropdown a:hover {
+            background: var(--gray-background);
+        }
+
+        .user-dropdown hr {
+            margin: 0;
+            border: none;
+            border-top: 1px solid rgba(136, 151, 168, 0.1);
+        }
+
+        /* Marketplace specific styles */
+        .marketplace-main {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .marketplace-header {
+            background: linear-gradient(135deg, var(--navy-deep), var(--navy-medium));
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            color: var(--white);
+        }
+
+        .marketplace-header .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .marketplace-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .marketplace-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        .marketplace-header .header-stats {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        .marketplace-header .stat-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            backdrop-filter: blur(10px);
+        }
+
+        .marketplace-header .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            font-family: var(--font-display);
+        }
+
+        .marketplace-header .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        .marketplace-filters {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .filters-container {
+            background: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-section {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 1px solid var(--slate-light);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            background: var(--gray-background);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .filter-tab {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid var(--slate-light);
+            background: var(--white);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: var(--gold-primary);
+            color: var(--white);
+            border-color: var(--gold-primary);
+        }
+
+        .filter-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .filter-select,
+        .sort-select {
+            padding: var(--spacing-sm);
+            border: 1px solid var(--slate-light);
+            border-radius: var(--radius-md);
+            background: var(--white);
+            font-size: 0.875rem;
+        }
+
+        .featured-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .featured-section h2 {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .marketplace-grid-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .results-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .marketplace-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .marketplace-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .marketplace-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .marketplace-card.featured {
+            border: 2px solid var(--gold-primary);
+        }
+
+        .card-image {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-type {
+            position: absolute;
+            top: var(--spacing-sm);
+            left: var(--spacing-sm);
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--white);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: var(--spacing-sm);
+            right: var(--spacing-sm);
+            background: var(--gold-primary);
+            color: var(--white);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .card-content {
+            padding: var(--spacing-lg);
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            margin-bottom: var(--spacing-xs);
+            line-height: 1.3;
+        }
+
+        .card-instructor {
+            color: var(--slate-medium);
+            font-size: 0.875rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .card-rating {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stars {
+            color: var(--gold-primary);
+            font-size: 0.875rem;
+        }
+
+        .rating-text {
+            font-size: 0.75rem;
+            color: var(--slate-light);
+        }
+
+        .card-description {
+            font-size: 0.875rem;
+            color: var(--slate-medium);
+            line-height: 1.4;
+            margin-bottom: var(--spacing-md);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .card-duration,
+        .card-category {
+            background: var(--gray-background);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            color: var(--slate-medium);
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-price {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gold-primary);
+        }
+
+        .card-availability {
+            font-size: 0.75rem;
+            color: var(--green-success);
+        }
+
+        .load-more-section {
+            text-align: center;
+            margin-top: var(--spacing-xl);
+        }
+
+        /* Modal styles */
+        .modal-large {
+            max-width: 800px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--slate-medium);
+        }
+
+        .item-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .details-header {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        .details-image {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+        }
+
+        .details-info {
+            flex: 1;
+        }
+
+        .details-instructor {
+            color: var(--slate-medium);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .details-rating {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .details-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gold-primary);
+        }
+
+        .detail-section {
+            border-top: 1px solid rgba(136, 151, 168, 0.1);
+            padding-top: var(--spacing-md);
+        }
+
+        .detail-section h4 {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .specialties-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+        }
+
+        .specialty-tag {
+            background: var(--gold-primary);
+            color: var(--white);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+        }
+
+        .modules-list,
+        .includes-list {
+            margin: 0;
+            padding-left: var(--spacing-md);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-sm);
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-label {
+            font-weight: 500;
+        }
+
+        @media (max-width: 1024px) {
+            .marketplace-header .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--spacing-lg);
+            }
+
+            .marketplace-header .header-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header .header-content {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .main-nav {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .filter-tabs {
+                flex-wrap: wrap;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+                align-items: flex-start;
+            }
+
+            .featured-grid,
+            .marketplace-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .details-header {
+                flex-direction: column;
+            }
+
+            .details-image {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</body>
+</html>

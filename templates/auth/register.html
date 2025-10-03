@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Evergrow360{% endblock %}
+
+{% block content %}
+<div class="grid grid-2" style="align-items: start;">
+    <!-- Registration Form -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Join Evergrow360</h2>
+            <p style="color: var(--gray-600); margin-top: 0.5rem;">Start your AI-powered leadership development journey</p>
+        </div>
+        
+        <form method="POST" action="/register">
+            <div class="form-group">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" id="email" name="email" class="form-input" required 
+                       placeholder="your.email@company.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="role" class="form-label">Professional Role</label>
+                <select id="role" name="role" class="form-select" required>
+                    <option value="">Select your role</option>
+                    <option value="ceo">CEO / President</option>
+                    <option value="cto">CTO / Technology Executive</option>
+                    <option value="cfo">CFO / Financial Executive</option>
+                    <option value="vp">VP / Senior Executive</option>
+                    <option value="director">Director</option>
+                    <option value="manager">Manager</option>
+                    <option value="team_lead">Team Lead</option>
+                    <option value="senior_ic">Senior Individual Contributor</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="industry" class="form-label">Industry</label>
+                <select id="industry" name="industry" class="form-select" required>
+                    <option value="">Select your industry</option>
+                    <option value="technology">Technology / Software</option>
+                    <option value="finance">Financial Services</option>
+                    <option value="healthcare">Healthcare / Life Sciences</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="retail">Retail / E-commerce</option>
+                    <option value="consulting">Consulting / Professional Services</option>
+                    <option value="education">Education</option>
+                    <option value="government">Government / Public Sector</option>
+                    <option value="nonprofit">Non-profit</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="experience" class="form-label">Leadership Experience</label>
+                <select id="experience" name="experience" class="form-select" required>
+                    <option value="">Select experience level</option>
+                    <option value="new">New to leadership (< 1 year)</option>
+                    <option value="developing">Developing leader (1-3 years)</option>
+                    <option value="experienced">Experienced leader (3-7 years)</option>
+                    <option value="senior">Senior leader (7-15 years)</option>
+                    <option value="executive">Executive leader (15+ years)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                    <input type="checkbox" name="consent" required style="margin: 0;">
+                    <span>I agree to the <a href="/privacy" style="color: var(--gold-primary);">Privacy Policy</a> and understand that my data will be anonymized for coaching purposes</span>
+                </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                Create Account & Start Assessment
+            </button>
+        </form>
+        
+        <div style="text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #E5E7EB;">
+            <p style="color: var(--gray-600);">Already have an account? <a href="/login" style="color: var(--gold-primary);">Sign in</a></p>
+        </div>
+    </div>
+    
+    <!-- Benefits -->
+    <div class="card" style="background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-light) 100%); color: var(--white);">
+        <h3 style="color: var(--gold-primary); margin-bottom: 1.5rem;">What You'll Get</h3>
+        
+        <div style="margin-bottom: 1.5rem;">
+            <h4 style="color: var(--white); margin-bottom: 0.5rem;">🎯 Personalized Assessment</h4>
+            <p style="opacity: 0.9;">AI-powered analysis of your leadership challenges, strengths, and development opportunities</p>
+        </div>
+        
+        <div style="margin-bottom: 1.5rem;">
+            <h4 style="color: var(--white); margin-bottom: 0.5rem;">📋 Custom Development Plan</h4>
+            <p style="opacity: 0.9;">Tailored coaching roadmap with specific phases, activities, and success metrics</p>
+        </div>
+        
+        <div style="margin-bottom: 1.5rem;">
+            <h4 style="color: var(--white); margin-bottom: 0.5rem;">👥 Access to Expert Coaches</h4>
+            <p style="opacity: 0.9;">Browse and connect with world-class executive coaches who match your needs</p>
+        </div>
+        
+        <div style="margin-bottom: 1.5rem;">
+            <h4 style="color: var(--white); margin-bottom: 0.5rem;">🔒 Complete Privacy</h4>
+            <p style="opacity: 0.9;">Enterprise-grade security with full data anonymization to protect your information</p>
+        </div>
+        
+        <div style="padding: 1rem; background: rgba(212, 175, 55, 0.1); border-radius: 6px; margin-top: 2rem;">
+            <p style="font-weight: 500; color: var(--gold-primary); margin-bottom: 0.5rem;">Free to Start</p>
+            <p style="opacity: 0.9; margin: 0;">Complete your assessment and explore the platform at no cost. Pay only when you book coaching sessions.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add form validation and user experience enhancements
+    const form = document.querySelector('form');
+    const submitButton = form.querySelector('button[type="submit"]');
+    
+    form.addEventListener('submit', function(e) {
+        submitButton.textContent = 'Creating your account...';
+        submitButton.disabled = true;
+    });
+    
+    // Add progress indication
+    const inputs = form.querySelectorAll('input[required], select[required]');
+    let completedFields = 0;
+    
+    function updateProgress() {
+        completedFields = 0;
+        inputs.forEach(input => {
+            if (input.value.trim() !== '') completedFields++;
+        });
+        
+        const progress = (completedFields / inputs.length) * 100;
+        if (progress > 0) {
+            if (!document.querySelector('.progress-bar')) {
+                const progressBar = document.createElement('div');
+                progressBar.className = 'progress-bar';
+                progressBar.innerHTML = `
+                    <div style="background: #E5E7EB; height: 4px; border-radius: 2px; margin-bottom: 1rem;">
+                        <div style="background: var(--gold-primary); height: 100%; border-radius: 2px; width: ${progress}%; transition: width 0.3s ease;"></div>
+                    </div>
+                    <p style="font-size: 0.875rem; color: var(--gray-600); margin: 0;">Registration progress: ${Math.round(progress)}%</p>
+                `;
+                form.insertBefore(progressBar, form.firstChild);
+            } else {
+                const bar = document.querySelector('.progress-bar div div');
+                const text = document.querySelector('.progress-bar p');
+                bar.style.width = progress + '%';
+                text.textContent = `Registration progress: ${Math.round(progress)}%`;
+            }
+        }
+    }
+    
+    inputs.forEach(input => {
+        input.addEventListener('input', updateProgress);
+        input.addEventListener('change', updateProgress);
+    });
+});
+</script>
+{% endblock %}
