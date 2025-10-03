@@ -11,3 +11,8 @@ __pycache__/
 *.pyc
 .venv
 .code
+firebase-soulcaptain.json
+
+# Firebase service account keys
+config/firebase-*.json
+config/*-adminsdk*.json
